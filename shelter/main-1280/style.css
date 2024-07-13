@@ -1,0 +1,127 @@
+body {
+    margin: 0 auto;
+    width: 1280px;
+}
+.upper_container {
+    min-height: 908px;
+    background-image: url(./img/start-screen-gradient-background.jpg), url(./img/start-screen-background.jpg);
+    padding: 30px 40px 0;
+    background-repeat: no-repeat;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+}
+.title h1 {
+    margin: 0;
+    font-family: Georgia;
+    font-size: 32px;
+    font-weight: 400;
+    line-height: 35.2px;
+    letter-spacing: 0.06em;
+    text-align: left;
+    color: #F1CDB3;
+}    
+.subtitle {
+    padding-top: 10px;
+    font-family: Arial;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 14.95px;
+    letter-spacing: 0.1em;
+    text-align: left;
+    color:#F1CDB3;
+}
+.nav_ul {
+    display: flex;
+}
+.nav_ul li {
+    list-style-type: none;
+    padding-left: 35px;
+}
+.nav_ul a {
+    text-decoration: none;
+    color: #CDCDCD;
+    font-size: 15px;
+    font-weight: 400;
+    font-family: Arial;
+    line-height: 24px;
+    text-align: left;
+}
+.nav_ul li a:hover{
+    color: #FAFAFA;
+} 
+li>.active {
+    color: #FAFAFA;
+    border-bottom: 3px solid #F1CDB3;
+}
+.not_only {
+    display: flex;
+    padding-top: 90px;
+}
+.not_only_text_content {
+    padding-top: 163px;
+    padding-right: 42px;
+    min-height: 322px;
+}
+.not_only_text_content h2 {
+    margin: 0;
+    font-family: Georgia;
+    font-size: 44px;
+    font-weight: 400;
+    line-height: 57.2px;
+    text-align: left;
+    color: #FFFFFF;
+}
+.not_only_text_content .text {
+    font-family: Arial;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 24px;
+    text-align: left;
+    color: #CDCDCD;
+    padding-top: 42px;
+}
+.not_only_button {
+    display: inline-block;
+    text-decoration: none;
+    width: 207px;
+    height: 52px;
+    background-color: #F1CDB3;
+    margin-top: 42px;
+    border-radius: 100px;
+    font-family: Georgia;
+    font-size: 17px;
+    font-weight: 400;
+    line-height: 52px;
+    letter-spacing: 0.06em;
+    color: #292929;
+    text-align: center;
+}
+.about{
+    padding: 80px 215px 100px;
+    display:flex;
+    justify-content: center;
+    background-color:#FFFFFF;
+}
+.about .about_text_content {
+    padding: 14px 0 14px 120px;
+    width: 430px;
+}
+.about_text_content h3 {
+    font-family: Georgia;
+    font-size: 35px;
+    font-weight: 400;
+    line-height: 45.5px;
+    letter-spacing: 0.06em;
+    text-align: left;
+    color: #545454;
+}
+.about_text {
+font-family: Arial;
+font-size: 15px;
+font-weight: 400;
+line-height: 24px;
+text-align: left;
+
+}
