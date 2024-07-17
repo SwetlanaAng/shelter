@@ -1,19 +1,34 @@
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0 auto;
     width: 1280px;
-}
+    background-color: #f0efef;
+}    
 .upper_container {
-    min-height: 908px;
+height: 908px;
     background-image: url(./img/start-screen-gradient-background.jpg), url(./img/start-screen-background.jpg);
     padding: 30px 40px 0;
     background-repeat: no-repeat;
+    background-size: cover;
 }
 .header {
     display: flex;
     justify-content: space-between;
 }
-.title h1 {
+.header_pets {
+    padding: 30px 40px;
+    background-color:#FFFFFF;
+    
+}
+.logo h1 {
     margin: 0;
+}
+.title a{
+    text-decoration: none;
+    
     font-family: Georgia;
     font-size: 32px;
     font-weight: 400;
@@ -21,8 +36,17 @@ body {
     letter-spacing: 0.06em;
     text-align: left;
     color: #F1CDB3;
-}    
+}  
+.title_pets a {
+    color: #545454;
+}
+.title a:hover {
+    color:#FFFFFF;
+    cursor: pointer;
+    transition-duration: 1s;
+}  
 .subtitle {
+    display: inline-block;
     padding-top: 10px;
     font-family: Arial;
     font-size: 13px;
@@ -30,7 +54,10 @@ body {
     line-height: 14.95px;
     letter-spacing: 0.1em;
     text-align: left;
-    color:#F1CDB3;
+    color:#FFFFFF;
+}
+.subtitle_pets {
+    color: #545454;
 }
 .nav_ul {
     display: flex;
@@ -48,12 +75,32 @@ body {
     line-height: 24px;
     text-align: left;
 }
+.nav_ul_pets a {
+    color: #545454;
+}
 .nav_ul li a:hover{
     color: #FAFAFA;
+    transition-duration: 0.6s;
 } 
+.nav_ul_pets li a:hover{
+    color: #292929;
+    transition-duration: 0.2s;
+}
 li>.active {
     color: #FAFAFA;
     border-bottom: 3px solid #F1CDB3;
+    cursor: default;
+}
+li>.not_active_pets {
+    color: #545454;
+    border-bottom: none;
+    cursor: pointer;
+}
+li>.active_pets {
+    color: #292929;
+    border-bottom: 3px solid #F1CDB3;
+    cursor: default;
+}
 }
 .not_only {
     display: flex;
@@ -97,6 +144,11 @@ li>.active {
     color: #292929;
     text-align: center;
 }
+.not_only_button:hover {
+    border-radius: 100px;
+    outline: 2px solid #F1CDB3;
+    background-color: #FAFAFA;
+}
 .not_only_button span {
     width: Hug (187px)px;
 height: Hug (52px)px;
@@ -106,6 +158,10 @@ border-radius: 100px 0px 0px 0px;
 border: 2px 0px 0px 0px;
 opacity: 0px;
 
+}
+.not_only_img_content {
+    position: relative;
+    top: 30px;
 }
 .about{
     padding: 80px 215px 100px;
@@ -118,6 +174,7 @@ opacity: 0px;
     width: 430px;
 }
 .about_text_content h3 {
+    margin: 0 0 25px 0;
     font-family: Georgia;
     font-size: 35px;
     font-weight: 400;
@@ -152,11 +209,18 @@ text-align: left;
 .slider {
     display: flex;
     justify-content: space-around;
+    flex-wrap: wrap;
     padding-top: 60px;
 }
 .card {
     background-color: #FAFAFA;
     text-align: center;
+    padding-bottom: 30px;
+    margin-bottom: 30px;
+}
+.card:hover .light_button{
+     background-color: #F1CDB3;
+     transition-duration: 0.6s;
 }
 .card h4 {
     font-family: Georgia;
@@ -193,6 +257,47 @@ padding: 15px 45px 15px 45px;
     padding: 23px 19px;
     border: 2px solid #F1CDB3;
     border-radius: 100%;
+}
+.prev:hover, .next:hover{
+    background-color: #F1CDB3;
+    transition-duration: 0.6s;
+}
+.navigation {
+    display: flex;
+    justify-content: center;
+    padding-top: 30px;
+}
+.double_arrow_left_pets, .arrow_left_pets {
+    
+    outline: 2px solid #CDCDCD;
+    border-radius: 100%;
+    margin: 0 10px;
+}
+.double_arrow_left_pets, .double_arrow_right_pets {
+    padding: 15px 13px;
+}
+.arrow_left_pets, .arrow_right_pets {
+    padding: 15.5px 20.5px;
+}
+.arrow_right_pets, .double_arrow_right_pets{
+    outline: 2px solid #F1CDB3;
+    border-radius: 100%;
+    margin: 0 10px;
+}
+.double_arrow_right_pets:hover, .arrow_right_pets:hover {
+    background-color:#F1CDB3;
+}
+.page_pets {
+    padding: 16px 21.5px;
+    border-radius: 100%;
+    background-color:#F1CDB3;
+    margin: 0 10px;
+    outline: 2px solid #F1CDB3;
+}
+.help {
+    display: flex;
+    flex-direction: column;
+    background-color: #FFFFFF;
 }
 .help h3{
     margin: 0;
@@ -260,6 +365,8 @@ padding: 15px 45px 15px 45px;
     color: #545454;
 }
 .credit_card {
+    text-decoration: none;
+    display: block;
     width: 318px;
     display: flex;
     align-items: center;
@@ -267,7 +374,12 @@ padding: 10px 15px 10px 15px;
 gap: 10px;
 border-radius: 9px;
 opacity: 0px;
-background-color: #F1CDB3;   
+background-color: #F1CDB3; 
+transition-duration: 0.6s;  
+}
+.credit_card:hover {
+    transform: scale(1.1);
+    
 }
 .card_img {
     position: relative;
@@ -293,8 +405,10 @@ background-color: #F1CDB3;
     color: #B2B2B2;
 }
 .footer {
+    height: 310px;
     background-image: url(./img/footer-gradient-background.png);
     background-repeat: no-repeat;
+    background-size: cover;
     display: flex;
     justify-content: space-around;
     padding: 40px 40px 0 40px;
@@ -338,4 +452,8 @@ line-height: 23px;
 letter-spacing: 0.06em;
 text-align: left;
 color: #F1CDB3;
+transition-duration: 0.6s;
+}
+.footer ul>li a:hover {
+    text-decoration: underline;
 }
