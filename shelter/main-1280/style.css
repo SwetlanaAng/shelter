@@ -44,7 +44,12 @@ height: 908px;
     color:#FFFFFF;
     cursor: pointer;
     transition-duration: 1s;
-}  
+}
+.title_pets a:hover {
+    color:#959393;
+    cursor: pointer;
+    transition-duration: 0.5s;
+}    
 .subtitle {
     display: inline-block;
     padding-top: 10px;
@@ -267,6 +272,9 @@ padding: 15px 45px 15px 45px;
     justify-content: center;
     padding-top: 30px;
 }
+.navigation a {
+    display: block;
+}
 .double_arrow_left_pets, .arrow_left_pets {
     
     outline: 2px solid #CDCDCD;
@@ -284,8 +292,12 @@ padding: 15px 45px 15px 45px;
     border-radius: 100%;
     margin: 0 10px;
 }
+a.disabled {
+    pointer-events: none;
+}
 .double_arrow_right_pets:hover, .arrow_right_pets:hover {
     background-color:#F1CDB3;
+    transition-duration: 0.6s;
 }
 .page_pets {
     padding: 16px 21.5px;
@@ -433,7 +445,7 @@ transition-duration: 0.6s;
     display: flex;
     align-items: center;
     padding-top: 32px;
-
+    transition-duration: 0.6s;
 }
 
 .footer_icon {
@@ -443,7 +455,8 @@ transition-duration: 0.6s;
     position: relative;
     top: 14px;
 }
-.footer ul>li a {
+.footer a {
+    display: inline-block;
     text-decoration: none;
 font-family: Georgia;
 font-size: 20px;
@@ -452,8 +465,9 @@ line-height: 23px;
 letter-spacing: 0.06em;
 text-align: left;
 color: #F1CDB3;
-transition-duration: 0.6s;
+transition: 0.5s;
 }
 .footer ul>li a:hover {
-    text-decoration: underline;
+    transform: scale(1.1);
+    
 }
