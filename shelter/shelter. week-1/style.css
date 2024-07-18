@@ -207,6 +207,9 @@ li>.active_pets {
     flex-wrap: wrap;
     padding: 54px 21px 0;
 }
+.slider_pets .card {
+    margin: 0px 19px 26px;
+}
 .card {
     background-color: #FAFAFA;
     text-align: center;
@@ -266,7 +269,7 @@ li>.active_pets {
 .navigation {
     display: flex;
     justify-content: center;
-    padding-top: 30px;
+    padding-top: 33px;
 }
 .navigation a {
     display: block;
