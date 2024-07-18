@@ -18,7 +18,7 @@ body {
     color: #545454;
 }  
 .upper_container {
-    height: 908px;
+    height: 876px;
     background-image: url(./img/start-screen-gradient-background.jpg), url(./img/start-screen-background.jpg);
     padding: 30px 40px 0;
     background-repeat: no-repeat;
@@ -60,7 +60,7 @@ body {
 }    
 .subtitle {
     display: inline-block;
-    padding-top: 10px;
+    padding-top: 7px;
     font-family: Arial;
     font-size: 13px;
     font-weight: 400;
@@ -77,7 +77,7 @@ body {
 }
 .nav_ul li {
     list-style-type: none;
-    padding-left: 35px;
+    padding-left: 36px;
 }
 .nav_ul a {
     text-decoration: none;
@@ -146,7 +146,7 @@ li>.active_pets {
     display: inline-block;
     text-decoration: none;
     background-color: #F1CDB3;
-    margin-top: 42px;
+    margin-top: 43px;
     border-radius: 100px;
     font-family: Georgia;
     font-size: 17px;
@@ -168,12 +168,8 @@ li>.active_pets {
     border: 2px 0px 0px 0px;
     opacity: 0px;
 }
-.not_only_img_content {
-    position: relative;
-    top: 30px;
-}
 .about{
-    padding: 80px 215px 100px;
+    padding: 80px 215px 95px;
     display:flex;
     justify-content: center;
     background-color:#FFFFFF;
@@ -191,24 +187,31 @@ li>.active_pets {
     font-weight: 400;
     line-height: 24px;
     text-align: left;
+    
+}
+.about_text_subtitle{
+    padding-top: 24px;
+}
+.about_text_subtitle_below {
+    padding-top: 8px;
 }
 .our_friends{
     background-color: #F6F6F6;
     text-align: center;
-    padding-top: 80px;
-    padding-bottom: 100px;
+    padding-top: 83px;
+    padding-bottom: 102px;
 }
 .slider {
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap;
-    padding-top: 60px;
+    padding: 54px 21px 0;
 }
 .card {
     background-color: #FAFAFA;
     text-align: center;
     padding-bottom: 30px;
-    margin-bottom: 30px;
+    margin: 2px 32px 30px;
 }
 .card:hover .light_button{
     background-color: #F1CDB3;
@@ -229,15 +232,18 @@ li>.active_pets {
     font-family: Georgia;
     font-size: 17px;
     font-weight: 400;
-    line-height: 52px;
+    line-height: 56px;
     letter-spacing: 0.06em;
     color: #292929;
     text-align: center;
     border-radius: 100px;
-    border: 2px solid #F1CDB3
+    border: 2px solid #F1CDB3;
+    margin-top: 4px;
+    height: 51px;
+
 }
 .light_button span {
-    padding: 15px 45px 15px 45px;
+    padding: 15px 43px;
 }
 .arrow_prev, .arrow_next {
     display: flex;
@@ -247,10 +253,15 @@ li>.active_pets {
     padding: 23px 19px;
     border: 2px solid #F1CDB3;
     border-radius: 100%;
+    margin-right: 3px;
+    margin-bottom: 24px;
 }
 .prev:hover, .next:hover{
     background-color: #F1CDB3;
     transition-duration: 0.6s;
+}
+.our_friends_button {
+    margin-top: 27px;
 }
 .navigation {
     display: flex;
@@ -295,6 +306,7 @@ a.disabled {
     flex-direction: column;
     background-color: #FFFFFF;
     padding-top: 80px;
+    padding-bottom: 5px;
 }
 .help_ul {
     margin: 0;
@@ -305,7 +317,7 @@ a.disabled {
 }
 .help_ul li {
     list-style-type: none;
-    padding: 0 60px 55px;
+    padding: 0 61px 48px;
     text-align: center;
 }
 .help_ul h4 {
@@ -323,15 +335,19 @@ a.disabled {
     display: flex;
     justify-content: center;
     background-color: #F6F6F6;
-    padding: 80px 182px 100px 183px
+    padding: 80px 182px 98px 183px
 }
 .in_addition_dog {
     padding-right: 30px;
+    padding-top: 10px;
 }
 .in_addition_text_info h3 {
     text-align: left;
+    
 }
 .subheading {
+    margin-top: 20px;
+    margin-bottom: 17px;
     font-family: Georgia;
     font-size: 15px;
     font-weight: 400;
@@ -346,7 +362,7 @@ a.disabled {
     width: 318px;
     display: flex;
     align-items: center;
-    padding: 10px 15px 10px 15px;
+    padding: 10px 15px;
     gap: 10px;
     border-radius: 9px;
     opacity: 0px;
@@ -368,6 +384,7 @@ a.disabled {
     letter-spacing: 0.06em;
     text-align: left;
     color: #545454;
+    padding-left: 3px;
 }
 .legal_info {
     padding-top: 20px;
@@ -385,7 +402,7 @@ a.disabled {
     background-repeat: no-repeat;
     background-size: cover;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     padding: 40px 40px 0 40px;
 }
 .footer h3 {
@@ -396,6 +413,7 @@ a.disabled {
 }
 .footer ul{
     padding: 0;
+    margin: 3px 0
 }
 .footer ul>li {
     list-style-type: none;
@@ -411,6 +429,10 @@ a.disabled {
 .footer_phone {
     position: relative;
     top: 14px;
+}
+.location{ margin-left: -5px;}
+.location ul>li {
+    padding-top: 29px;
 }
 .footer a {
     display: inline-block;
