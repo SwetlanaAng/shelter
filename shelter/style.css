@@ -374,6 +374,7 @@ a.disabled {
 }
 .credit_card:hover {
     transform: scale(1.1);
+    cursor: pointer;
 }
 .card_img {
     position: relative;
