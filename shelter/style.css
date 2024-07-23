@@ -219,6 +219,7 @@ li>.active_pets {
 .card:hover .light_button{
     background-color: #F1CDB3;
     transition-duration: 0.6s;
+    cursor: pointer;
 }
 .card h4 {
     font-family: Georgia;
