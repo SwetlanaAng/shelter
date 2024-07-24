@@ -96,7 +96,7 @@
         align-self: center;
     }
     .footer {
-        height: 693px;
+        height: 625px;
         flex-wrap: wrap;
         padding: 14px 64px 0;
     }
@@ -107,7 +107,7 @@
         padding-right: 8px;
     }
     .footer_dog {
-        padding-top: -6px;
+        padding-top: 58px;
         margin: 0 auto;
     }
 }
