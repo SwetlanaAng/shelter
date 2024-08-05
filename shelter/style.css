@@ -26,14 +26,13 @@ body {
     padding: 30px 40px 0;
 }
 .upper_container_pets {
-    height: 120px;
+    height: 90px;
 }
 .header {
     display: flex;
     justify-content: space-between;
 }
 .header_pets {
-    padding: 30px 40px;
     background-color:#FFFFFF;   
 }
 .logo {
@@ -62,15 +61,15 @@ body {
     text-align: left;
     color: #F1CDB3;
 }  
-.title_pets a {
+.title_pets {
     color: #545454;
 }
-.title a:hover {
+.title:hover {
     color:#FFFFFF;
     cursor: pointer;
     transition-duration: 1s;
 }
-.title_pets a:hover {
+.title_pets:hover {
     color:#959393;
     cursor: pointer;
     transition-duration: 0.5s;
@@ -132,6 +131,7 @@ li>.active_pets {
     color: #292929;
     border-bottom: 3px solid #F1CDB3;
     cursor: default;
+    padding-bottom:4px;
 }
 
 .not_only {
@@ -227,6 +227,10 @@ li>.active_pets {
     padding-top: 83px;
     padding-bottom: 102px;
 }
+.our_friends_pets {
+    padding-top: 81px;
+    padding-bottom: 101px;
+}
 .slider {
     width: 1200px;
     display: flex;
@@ -234,8 +238,15 @@ li>.active_pets {
     flex-wrap: wrap;
     padding: 54px 21px 0;
 }
+.slider_pets {
+    row-gap: 29px;
+}
 .slider_pets .card {
-    margin: 0px 19px 26px;
+    margin: 0;
+}
+.slider_pets .card h4 {
+    
+    line-height: 24px;
 }
 .card {
     background-color: #FAFAFA;
@@ -307,7 +318,8 @@ li>.active_pets {
 .navigation {
     display: flex;
     justify-content: center;
-    padding-top: 33px;
+    padding-top: 62px;
+    row-gap: 20px;
 }
 .navigation a {
     display: block;
@@ -315,18 +327,18 @@ li>.active_pets {
 .double_arrow_left_pets, .arrow_left_pets {
     outline: 2px solid #CDCDCD;
     border-radius: 100%;
-    margin: 0 10px;
+    margin: 1px 10px;
 }
 .double_arrow_left_pets, .double_arrow_right_pets {
     padding: 15px 13px;
 }
 .arrow_left_pets, .arrow_right_pets {
-    padding: 15.5px 20.5px;
+    padding: 15px 21px;
 }
 .arrow_right_pets, .double_arrow_right_pets{
     outline: 2px solid #F1CDB3;
     border-radius: 100%;
-    margin: 0 10px;
+    margin: 1px 10px;
 }
 a.disabled {
     pointer-events: none;
