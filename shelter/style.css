@@ -20,7 +20,7 @@ body {
     color: #545454;
 }  
 .upper_container {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
     height: 878px;
     padding: 30px 40px 0;
@@ -194,7 +194,7 @@ li>.active_pets {
     justify-content: center;
     background-color:#FFFFFF;
 }
-.about_container {
+.our_friends_container {
     display: flex;
     flex-direction: column;
     align-items: center
@@ -202,6 +202,11 @@ li>.active_pets {
 .about .about_text_content {
     padding: 14px 0 14px 120px;
     width: 430px;
+}
+.about_container {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
 }
 .about_text_content h3 {
     text-align: left; 
@@ -232,7 +237,7 @@ li>.active_pets {
     padding-bottom: 101px;
 }
 .slider {
-    width: 1200px;
+    width: 93.7%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -364,7 +369,7 @@ a.disabled:hover {
     background-color: #FFFFFF;
 }
 .help_content {
-    width: 1200px;
+    width: 93.7%;
     padding: 80px 40px 100px 40px;
     display: flex;
     flex-direction: column;
@@ -372,7 +377,7 @@ a.disabled:hover {
     align-items: center;
 }
 .help_ul {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0;
     
     display: flex;
@@ -472,10 +477,10 @@ a.disabled:hover {
 }
 .footer {
     background: url(./img/tile.png), radial-gradient(237.5% 111.8% at 0% 0%, rgb(91, 72, 58) 0%, rgb(38, 36, 37) 100%);
-    height: 310px;
     display: flex;
     justify-content: space-around;
     padding: 40px 40px 0 40px;
+    max-height: 310px;
 }
 .footer_container {
     display: flex;
