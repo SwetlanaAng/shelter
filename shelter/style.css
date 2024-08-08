@@ -1,12 +1,13 @@
 html {
     scroll-behavior: smooth;
 }
-
 body {
-    margin: 0 auto;
-    width: 1280px;
-    background-color: #f0efef;
-}  
+    margin: 0;
+    padding: 0;
+}
+.header_not_only_container {
+    background: url(./img/tile.png), radial-gradient(237.5% 111.8% at 0% 0%, rgb(91, 72, 58) 0%, rgb(38, 36, 37) 100%);
+}
 .h3 {
     margin: 0;
     font-family: Georgia;
@@ -18,25 +19,38 @@ body {
     color: #545454;
 }  
 .upper_container {
-    height: 876px;
-    background-image: url(./img/start-screen-gradient-background.jpg), url(./img/start-screen-background.jpg);
+    max-width: 1200px;
+    margin: 0 auto;
+    height: 878px;
     padding: 30px 40px 0;
-    background-repeat: no-repeat;
-    background-size: cover;
+}
+.upper_container_pets {
+    height: 90px;
 }
 .header {
     display: flex;
     justify-content: space-between;
 }
 .header_pets {
-    padding: 30px 40px;
     background-color:#FFFFFF;   
+}
+.logo {
+    display: block;
+    text-decoration: none;
+}
+.logo .title {
+    transition: 0.5s;
 }
 .logo h1 {
     margin: 0;
 }
-.title a{
-    text-decoration: none;
+.logo:hover {
+    cursor: pointer;
+}
+.logo:hover .title{
+    color: #FDDCC4;
+}
+.title {
     font-family: Georgia;
     font-size: 32px;
     font-weight: 400;
@@ -45,22 +59,23 @@ body {
     text-align: left;
     color: #F1CDB3;
 }  
-.title_pets a {
+.title_pets {
     color: #545454;
 }
-.title a:hover {
+.title:hover {
     color:#FFFFFF;
     cursor: pointer;
     transition-duration: 1s;
 }
-.title_pets a:hover {
+.title_pets:hover {
     color:#959393;
     cursor: pointer;
     transition-duration: 0.5s;
 }    
 .subtitle {
     display: inline-block;
-    padding-top: 7px;
+    padding-top: 11px;
+    padding-left: 3px;
     font-family: Arial;
     font-size: 13px;
     font-weight: 400;
@@ -100,6 +115,7 @@ body {
     transition-duration: 0.2s;
 }
 li>.active {
+    padding-bottom:4px;
     color: #FAFAFA;
     border-bottom: 3px solid #F1CDB3;
     cursor: default;
@@ -113,8 +129,8 @@ li>.active_pets {
     color: #292929;
     border-bottom: 3px solid #F1CDB3;
     cursor: default;
+    padding-bottom:4px;
 }
-
 .not_only {
     display: flex;
     padding-top: 90px;
@@ -140,7 +156,7 @@ li>.active_pets {
     line-height: 24px;
     text-align: left;
     color: #CDCDCD;
-    padding-top: 42px;
+    padding-top: 40px;
 }
 .not_only_button {
     display: inline-block;
@@ -155,6 +171,7 @@ li>.active_pets {
     letter-spacing: 0.06em;
     color: #292929;
     text-align: center;
+    transition: 0.5s;
 }
 .not_only_button:hover {
     border-radius: 100px;
@@ -174,9 +191,19 @@ li>.active_pets {
     justify-content: center;
     background-color:#FFFFFF;
 }
+.our_friends_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center
+}
 .about .about_text_content {
     padding: 14px 0 14px 120px;
     width: 430px;
+}
+.about_container {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
 }
 .about_text_content h3 {
     text-align: left; 
@@ -187,7 +214,6 @@ li>.active_pets {
     font-weight: 400;
     line-height: 24px;
     text-align: left;
-    
 }
 .about_text_subtitle{
     padding-top: 24px;
@@ -201,25 +227,43 @@ li>.active_pets {
     padding-top: 83px;
     padding-bottom: 102px;
 }
+.our_friends_pets {
+    padding-top: 81px;
+    padding-bottom: 101px;
+}
 .slider {
+    width: 93.7%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     flex-wrap: wrap;
     padding: 54px 21px 0;
 }
+.slider_pets {
+    row-gap: 29px;
+    padding-top: 57px;
+}
 .slider_pets .card {
-    margin: 0px 19px 26px;
+    margin: 0;
+    padding-bottom: 29px;
+}
+.slider_pets .card h4 {
+    line-height: 24px;
 }
 .card {
     background-color: #FAFAFA;
     text-align: center;
     padding-bottom: 30px;
-    margin: 2px 32px 30px;
+    margin: 1px 39px 30px;
+    transition: 0.5s;
 }
 .card:hover .light_button{
     background-color: #F1CDB3;
     transition-duration: 0.6s;
     cursor: pointer;
+}
+.card:hover {
+    background-color: #FFFFFF;
+    box-shadow: 0px 2px 35px 14px #0D0D0D0A;
 }
 .card h4 {
     font-family: Georgia;
@@ -231,32 +275,36 @@ li>.active_pets {
     color: #545454;
 }
 .light_button{
-    display: inline-block;
-    text-decoration: none;
     font-family: Georgia;
     font-size: 17px;
     font-weight: 400;
-    line-height: 56px;
+    line-height: 51px;
     letter-spacing: 0.06em;
     color: #292929;
-    text-align: center;
     border-radius: 100px;
     border: 2px solid #F1CDB3;
     margin-top: 4px;
-    height: 51px;
-
+    height: 52px;
+    width: 187px;
+    background: none;
 }
-.light_button span {
-    padding: 15px 43px;
+.light_button_pets {
+    line-height: 44px;
 }
 .arrow_prev, .arrow_next {
     display: flex;
     align-items: center;
+    height: 440px;
+}
+.arrow{
+    border: 2px solid #F1CDB3;
+    border-radius: 100px;
+    width: 50px;
+    height: 50px;
 }
 .prev, .next {
     padding: 23px 19px;
-    border: 2px solid #F1CDB3;
-    border-radius: 100%;
+    
     margin-right: 3px;
     margin-bottom: 24px;
 }
@@ -265,12 +313,17 @@ li>.active_pets {
     transition-duration: 0.6s;
 }
 .our_friends_button {
-    margin-top: 27px;
+    margin-top: 31px;
+    width: 261px;
+    height: 52px;
+    border: none;
+    line-height: 52px;
 }
 .navigation {
     display: flex;
     justify-content: center;
-    padding-top: 33px;
+    padding-top: 62px;
+    row-gap: 20px;
 }
 .navigation a {
     display: block;
@@ -278,21 +331,24 @@ li>.active_pets {
 .double_arrow_left_pets, .arrow_left_pets {
     outline: 2px solid #CDCDCD;
     border-radius: 100%;
-    margin: 0 10px;
+    margin: 1px 10px;
 }
 .double_arrow_left_pets, .double_arrow_right_pets {
     padding: 15px 13px;
 }
 .arrow_left_pets, .arrow_right_pets {
-    padding: 15.5px 20.5px;
+    padding: 15px 21px;
 }
 .arrow_right_pets, .double_arrow_right_pets{
     outline: 2px solid #F1CDB3;
     border-radius: 100%;
-    margin: 0 10px;
+    margin: 1px 10px;
 }
 a.disabled {
     pointer-events: none;
+}
+a.disabled:hover {
+    cursor: not-allowed;
 }
 .double_arrow_right_pets:hover, .arrow_right_pets:hover {
     background-color:#F1CDB3;
@@ -308,27 +364,43 @@ a.disabled {
 .help {
     display: flex;
     flex-direction: column;
+    align-items: center;
     background-color: #FFFFFF;
-    padding-top: 80px;
-    padding-bottom: 5px;
+}
+.help_content {
+    width: 93.7%;
+    padding: 80px 40px 100px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .help_ul {
+    max-width: 1200px;
     margin: 0;
-    padding: 60px 67px 45px;
+    
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    padding-top: 55px;
+    column-gap: 120px;
+    row-gap: 52px;
+    margin-right: 39px;
 }
 .help_ul li {
     list-style-type: none;
-    padding: 0 61px 48px;
     text-align: center;
+}
+.help_ul li:nth-child(8), 
+.help_ul li:nth-child(6){
+    position:relative;
+    top: 7px;
 }
 .help_ul h4 {
     margin: 0;
-    padding-top: 30px;
+    padding-top: 28px;
     font-family: Georgia;
-    font-size: 19px;
+    font-size: 20px;
     font-weight: 400;
     line-height: 23px;
     letter-spacing: 0.06em;
@@ -339,7 +411,12 @@ a.disabled {
     display: flex;
     justify-content: center;
     background-color: #F6F6F6;
-    padding: 80px 182px 98px 183px
+    padding: 83px 182px 99px 183px
+}
+.in_addition_container {
+    display: flex;
+    justify-content: center;
+    max-width: 915px;
 }
 .in_addition_dog {
     padding-right: 30px;
@@ -347,11 +424,10 @@ a.disabled {
 }
 .in_addition_text_info h3 {
     text-align: left;
-    
 }
 .subheading {
-    margin-top: 20px;
-    margin-bottom: 17px;
+    margin-top: 19px;
+    margin-bottom: 18px;
     font-family: Georgia;
     font-size: 15px;
     font-weight: 400;
@@ -363,10 +439,10 @@ a.disabled {
 .credit_card {
     text-decoration: none;
     display: block;
-    width: 318px;
+    width: 319px;
     display: flex;
     align-items: center;
-    padding: 10px 15px;
+    padding: 9px 15px;
     gap: 10px;
     border-radius: 9px;
     opacity: 0px;
@@ -377,7 +453,7 @@ a.disabled {
     transform: scale(1.1);
     cursor: pointer;
 }
-.card_img {
+.credit_card_img {
     position: relative;
     top: 3px;
 }
@@ -389,7 +465,7 @@ a.disabled {
     letter-spacing: 0.06em;
     text-align: left;
     color: #545454;
-    padding-left: 3px;
+    padding-left: 4px;
 }
 .legal_info {
     padding-top: 20px;
@@ -402,13 +478,16 @@ a.disabled {
     color: #B2B2B2;
 }
 .footer {
-    height: 310px;
-    background-image: url(./img/footer-gradient-background.png);
-    background-repeat: no-repeat;
-    background-size: cover;
+    background: url(./img/tile.png), radial-gradient(237.5% 111.8% at 0% 0%, rgb(91, 72, 58) 0%, rgb(38, 36, 37) 100%);
+    display: flex;
+    justify-content: space-around;
+    padding: 40px 40px 0 40px;
+    max-height: 310px;
+}
+.footer_container {
     display: flex;
     justify-content: space-between;
-    padding: 40px 40px 0 40px;
+    width: 1200px;
 }
 .footer h3 {
     padding-top: 16px;
@@ -418,30 +497,21 @@ a.disabled {
 }
 .footer ul{
     padding: 0;
-    margin: 3px 0
+    margin: 3px 0;
+    padding-top: 4px;
+}
+.footer_container_pets ul {
+    margin: 1px 0;
 }
 .footer ul>li {
     list-style-type: none;
     display: flex;
     align-items: center;
     padding-top: 32px;
-    transition-duration: 0.6s;
 }
-
-.footer_icon {
-    padding-right: 20px;
-}
-.footer_phone {
-    position: relative;
-    top: 14px;
-}
-.location{ margin-left: -5px;}
-.location ul>li {
-    padding-top: 29px;
-}
-.footer a {
-    display: inline-block;
-    text-decoration: none;
+.link_container {
+    display: flex;
+    align-items: center;
     font-family: Georgia;
     font-size: 20px;
     font-weight: 400;
@@ -451,6 +521,21 @@ a.disabled {
     color: #F1CDB3;
     transition: 0.5s;
 }
-.footer ul>li a:hover {
+.footer_icon {
+    padding-right: 20px;
+}
+.footer_phone {
+    position: relative;
+    top: 6px;
+}
+.location{ margin-left: -5px;}
+.location ul {
+    padding-top: 0;
+}
+.location ul>li {
+    padding-top: 29px;
+}
+.footer ul>li .link_container:hover {
     transform: scale(1.1);
+    cursor: pointer;
 }
