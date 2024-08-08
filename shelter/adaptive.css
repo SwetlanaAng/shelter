@@ -24,10 +24,6 @@
     .card {
         margin: 3px 15px 30px;
     }
-    /* .katrine {
-        position: relative;
-        left: -7px;
-    } */
     .light_button {
         margin-top: 1px;
     }
@@ -57,7 +53,6 @@
         flex-direction: column;
         padding: 60px 55px 0;
         justify-content: center;
-        
     }
     .not_only_text_content {
         padding: 0 69px;
@@ -66,11 +61,10 @@
     }
     .not_only_button {
        margin: 43px auto 100px; 
-      
     }
     .not_only_img_content {
         text-align: end;
-        width: 569px;
+        width: 95%;
         margin-bottom: -5px;
     }
     .not_only_img_content img{
@@ -86,10 +80,14 @@
     }
     .about .about_text_content {
         padding: 0 0 80px 0;
-        width: 430px;
+        width: 100%;
     }
     .about .img {
         padding-bottom: 20px;
+        width: 70%;
+    }
+    .about .img img {
+        width: 100%;
     }
     .our_friends{
         padding-bottom: 0;
@@ -109,7 +107,7 @@
     }
     .arrow_prev {
         position: relative;
-        left: 3px;
+        left: 9px;
         top: 1px;
     }
     .arrow {
@@ -119,9 +117,15 @@
     }
     .arrow_next {
         margin-right: 5px;
+        position: relative;
+        right: 6px;
     }
     .card {
         margin: 3px 17px 30px 22px;
+    }
+    .card_img {
+        position: relative;
+        top: 4px;
     }
     .card h4 {
         padding-top: 2px;
@@ -137,7 +141,7 @@
         display: none;
     }
     .navigation_pets {
-        padding-top: 41px;
+        padding-top: 43px;
         padding-bottom: 77px;
     }
     .help_content{
@@ -159,7 +163,6 @@
         position:relative;
         top: 7px;
     }
-
     .help_ul h4{padding-top: 26px;}
     .in_addition{
         padding-bottom: 0;
@@ -178,6 +181,9 @@
     .in_addition_text_info {
         padding-left: 61px;
     }
+    .legal_info {
+        width: 86%;
+    }
     .credit_card {
         width: 321px;
         gap: 12px;
@@ -191,6 +197,12 @@
         flex-wrap: wrap;
         padding: 14px 24px 0;
     }
+    .footer_container_pets{
+        padding: 17px 24px 0;
+    }
+    .footer h3 {
+        padding-bottom: 0;
+    }
     .footer ul>li {
         padding-top: 30px;
     }
@@ -201,11 +213,13 @@
         padding-top: 2px;
     }
     .footer_dog {
-        padding-top: 58px;
+        padding-top: 60px;
         margin: 0 auto;
     }
+    .footer_container_pets .footer_dog{
+        padding-top: 61px;
+    }
 }
-
 @media (max-width: 1164px) and (min-width: 995px) {
     .help_ul {
         justify-content: center;
@@ -219,13 +233,13 @@
     .location { 
         margin-left: 60px;
     }
-    
-    .footer_dog {
+    .footer_container_pets {
+        padding-top: 14px;
+    }
+    .footer_container_pets .footer_dog {
         padding-top: 0;
-        
     }
 }
-
 @media (max-width: 767px) and (min-width: 320px){
     .nav_ul {
         display: none;
@@ -255,7 +269,6 @@
         margin-top: 19px;
     }
     .not_only {
-
         flex-direction: column;
         justify-content: center;
         padding-top: 0;
@@ -278,24 +291,21 @@
     }
     .not_only_img_content {
         padding-top: 79px;
-        width: 260px;
+        width: 87%;
+        margin: 0 auto;
         margin-bottom: -5px;
         padding-left: 40px;
     }
     .not_only_img_content img{
         width: 100%;
     }
-
-
-
-
     .about {
         flex-direction: column-reverse;
         align-items: center;
         padding: 28px 10px 38px;
     }
     .about .about_text_content {
-        width: 270px;
+        width: 90%;
         padding: 14px 15px;
         text-align: justify;
     }
@@ -313,29 +323,38 @@
         padding-top: 3px;
     }
     .img {
-        width: 260px;
+        width: 86%;
         padding-top: 26px;
     }
     .img img {
         width: 100%;
     }
-
     .our_friends{
-        padding: 42px 0 43px 0;
+        padding: 44px 0 43px 0;
     }
-    .our_friends_pets {padding-bottom: 37px;}
+    .our_friends_pets {
+        padding-bottom: 37px;
+        padding-top: 41px;
+    }
     .slider {
         max-width: 275px;
         padding: 0;
         padding-top: 57px;
-        
         position: relative;
         display: flex;
         flex-direction: column;
     }
     .slider_pets {
         width: 85%;
-        padding-top: 37px;
+        padding-top: 43px;
+        row-gap: 31px;
+    }
+    .slider_pets .card {
+        padding-bottom: 33px;
+    }
+    .slider_pets .card h4 {
+        padding-top: 0;
+        line-height: 21px;
     }
     .freddie, .scarlett, .charly,
     .timmy, .sophia {
@@ -343,11 +362,11 @@
     }
     .navigation_pets {
         padding-bottom: 0;
+        padding-top: 37px;
     }
     .navigation_pets>a,  .navigation_pets>div {
         margin: 6px 5px;
     }
-
      .arrow_prev {
         order: 1;
         height: 114px;
@@ -361,7 +380,12 @@
     .card_img img {
         width: 100%;
     }
-
+    .card_img {
+        left: 0;
+    }
+    .card_img_pets {
+        left: 0;
+    }
      .arrow_next{
         order: 1;
         height: 56px;
@@ -380,8 +404,6 @@
     .jennifer, .woody {
         display: none;
     }
-
-
     .help {
         padding-top: 41px;
     }
@@ -397,7 +419,6 @@
         column-gap: 30px;
         row-gap: 1px;
     }
-    
     .help_ul li {
         width: 130px;
         padding: 14px 0 11px;
@@ -411,37 +432,34 @@
         letter-spacing: 0.06em;
         padding-top: 20px;
     }
-
     .in_addition{
         padding: 0;
     }
     .in_addition_container {
         flex-direction: column-reverse;
-        padding: 43px 20px 36px;
+        padding: 41px 20px 38px;
     }
     .in_addition_text_info h3 {
         text-align: center;
     }
     .credit_card {
         width: 281px;
-        padding: 9px 0px;
+        padding: 10px 0px;
         gap: 26px
     }
     .card_text {
         font-size: 15px;
         line-height: 16.5px;
     }
-    .card_img {
+    .credit_card_img {
+        top: 2px;
         left: 14px;
     }
-    .card_img_pets {
-        left: 0;
-    }
     .in_addition_dog {
-        width: 260px;
+        width: 92%;
         align-self: center;
         padding-right: 0;
-        padding-top: 5px;
+        padding-top: 6px;
     }
     .subheading {
         line-height: 24px;
@@ -450,6 +468,7 @@
     }
     .legal_info {
         text-align: justify;
+        padding-top: 18px;
     }
     .in_addition_text_info {
         padding-bottom: 37px;
@@ -457,7 +476,6 @@
     .in_addition_dog img {
         width: 100%;
     }
-
     .footer {
         padding: 0;
         max-height: 809px;
@@ -468,7 +486,8 @@
         padding: 16px 0 0;
     }
     .footer_container_pets{
-        padding-top: 15px;
+        padding-top: 16px;
+        height: 801px;
     }
     .footer h3 {
         text-align: center;
@@ -487,7 +506,7 @@
         margin-top: -5px;
     }
     .location h3 {
-        padding: 43px 34px 5px;
+        padding: 43px 34px 4px;
     }
     .location_ul li:nth-child(even) {
         padding-top: 36px;
@@ -508,9 +527,6 @@
         flex-direction: column;
         justify-content: end;
         align-items: center;
-    }
-    
-}
-@media (min-width: 422px) {
-    
+        padding-top: 12px;
+    }  
 }
