@@ -555,7 +555,7 @@ a.disabled:hover {
 .scroll_blocked{
     overflow: hidden;
 }
-.menu{
+.menu, .menu_pets{
     width: 320px;
     height:  100vh;
     position: absolute;
