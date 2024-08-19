@@ -1,58 +1,24 @@
-const text = `Ваша оценка - 100 баллов\n 
-Отзыв по пунктам ТЗ:\n
-Выполненные пункты:\n
-Вёрстка страницы Main соответствует макету при ширине экрана 1280px: +14\n
-блок <header>: +2\n
-блок Not only: +2\n
-блок About: +2\n
-блок Our Friends: +2\n
-блок Help: +2\n
-блок In addition: +2\n
-блок <footer>: +2\n
-Вёрстка страницы Main соответствует макету при ширине экрана 768px: +14\n
-блок <header>: +2\n
-блок Not only: +2\n
-блок About: +2\n
-блок Our Friends: +2\n
-блок Help: +2\n
-блок In addition: +2\n
-блок <footer>: +2\n
-Вёрстка страницы Main соответствует макету при ширине экрана 320px: +14\n
-блок <header>: +2\n
-блок Not only: +2\n
-блок About: +2\n
-блок Our Friends: +2\n
-блок Help: +2\n
-блок In addition: +2\n
-блок <footer>: +2\n
-Вёрстка страницы Pets соответствует макету при ширине экрана 1280px: +6\n
-блок <header>: +2\n
-блок Our Friends: +2\n
-блок <footer>: +2\n
-Вёрстка страницы Pets соответствует макету при ширине экрана 768px: +6\n
-блок <header>: +2\n
-блок Our Friends: +2\n
-блок <footer>: +2\n
-Вёрстка страницы Pets соответствует макету при ширине экрана 320px: +6\n
-блок <header>: +2\n
-блок Our Friends: +2\n
-блок <footer>: +2\n
-Ни на одном из разрешений до 320px включительно не появляется горизонтальная полоса прокрутки,\n
-справа от отдельных блоков не появляются белые поля. Весь контент страницы при этом сохраняется:\n
- не обрезается и не удаляется: +20\n
-нет полосы прокрутки при ширине страницы Main от 1280рх до 768рх: +5\n
-нет полосы прокрутки при ширине страницы Main от 768рх до 320рх: +5\n
-нет полосы прокрутки при ширине страницы Pets от 1280рх до 768рх: +5\n
-нет полосы прокрутки при ширине страницы Pets от 768рх до 320рх: +5\n
-Верстка резиновая: при плавном изменении размера экрана от 1280px до 320px верстка\n
- подстраивается под этот размер, элементы верстки меняют свои размеры и расположение, \n
- не наезжают друг на друга, изображения могут менять размер, \n
- но сохраняют правильные пропорции (Примеры неправильной и правильной реализации): +8\n
-на странице Main: +4\n
-на странице Pets: +4\n
-При ширине экрана меньше 768px на обеих страницах меню в хедере скрывается,\n
- появляется иконка бургер-меню: +4\n
-Открытие меню при клике на иконку бургер-меню на текущем этапе не проверяется\n
-Верстка обеих страниц валидная\n
-`;
-console.log(text);
+document.addEventListener("DOMContentLoaded", function(){
+    const burger = document.querySelector(".nav");
+    const header = document.querySelector(".header");
+    const menu = document.querySelector(".menu");
+    const menuBackground = document.querySelector(".menu_background");
+    menuBackground.classList.add('hide');
+
+    function openCloseBurger(){
+        menuBackground.classList.toggle('hide');
+        
+        burger.classList.toggle('burger_rotate');
+        document.body.classList.toggle('scroll_blocked');
+        menu.classList.toggle('menu_show');
+    }
+    burger.addEventListener('click', openCloseBurger);
+    menuBackground.addEventListener('click', openCloseBurger)
+    menu.addEventListener('click', (event)=>{
+        if(event.target.nodeName == 'A'){
+            openCloseBurger();
+        }
+    })
+})
+
+
