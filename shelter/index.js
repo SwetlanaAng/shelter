@@ -100,11 +100,13 @@ document.addEventListener("DOMContentLoaded", function(){
     const width = window.getComputedStyle(cardsWindow).width;
     const arrowNext = document.querySelector(".arrow_next>.arrow");
     const arrowPrev = document.querySelector(".arrow_prev>.arrow");
+    const ourFriendsContainer = document.querySelector(".our_friends_container");
 
     let arrShowCards = [];
     let arrPetsInWrapper = [];
 
-    // burger
+    //burger
+
 
     function openCloseBurger(){
         menuBackground.classList.toggle('hide');
@@ -121,23 +123,72 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
 
-    // slider main
-
+    //slider
     console.log(document.documentElement.clientWidth);
+    let numCards =0;
+    let leftSide = 0;
+    function referNumCards(){
+        if(document.documentElement.clientWidth>=1231){
+            numCards = 3;
+            leftSide = 1080;
+        }else if (document.documentElement.clientWidth<1231 && document.documentElement.clientWidth>767){
+            numCards = 2;
+            leftSide = 632;
+            //cardsWrapper.style.columnGap = 280;
+        }
+        else {numCards = 1;
+        leftSide = 290;}
+    }
+    
+    referNumCards();
+    initial(numCards, leftSide) ;
+     window.addEventListener('resize', () => {
+            let oldNumCards = numCards;
+            referNumCards();
+            if (oldNumCards!=numCards){
+                cardsWrapper.innerHTML = '';
+                initial(numCards, leftSide) ;
+            }
+        
+        /* cardsWrapper.style.columnGap = (window.getComputedStyle(cardsWindow).width - 348*numCards)/numCards + 'px';
+        console.log(cardsWrapper.style.columnGap) */
+        //cardsWrapper.style.columnGap = `${startWindowWith-document.documentElement.clientWidth}px`    
+      }); 
+     
+    function createArrShowCards(iC){
+        arrShowCards = [];
+        for(let i = 0; i< iC; i++){
+            arrShowCards.push(arrPets[i]);
+        }
+    }
+    function initial(imageCount, leftS){
+        arrPets = arrPets.sort(() => Math.random() - 0.5);
+        createArrShowCards(imageCount);
+        arrPetsInWrapper = [genCards(arrPets, arrShowCards), arrShowCards, genCards(arrPets, arrShowCards)];
+        putCardInEnd(0, arrPetsInWrapper.flat().length);
+        let size = 1280;
+        if(imageCount ===2){
+            size = 767;
+        }
+        if(imageCount ===1){
+            size = 319;
+        }
+        ourFriendsContainer.style.width = `${size}px`;
+        console.log(leftS);
+        cardsWrapper.style.left = `-${leftS}px`;
+    }
+    
 
-    arrPets = arrPets.sort(() => Math.random() - 0.5);
-    arrShowCards = [arrPets[0], arrPets[1], arrPets[2]]; 
-    arrPetsInWrapper = [...genCards(arrPets, arrShowCards), ...arrShowCards, ...genCards(arrPets, arrShowCards)];
-    putCardInEnd(0, arrPetsInWrapper.length);
 
     function createCard(index) {
-        const cardSource = arrPetsInWrapper[index];
+        const cardSource = arrPetsInWrapper.flat()[index];
             const card = document.createElement('div');
             card.classList.add('card');
             card.innerHTML = `
             <div class="card_img"><img src="${cardSource.img}" alt="${cardSource.name}"></div>
                         <h4>${cardSource.name}</h4>
                         <button class="light_button">Learn more</button>`
+                        console.log('hi')           
             return card;
     }
     function putCardInEnd(from, to){
@@ -146,8 +197,8 @@ document.addEventListener("DOMContentLoaded", function(){
         } 
     }
 
-    function putCardInBeginning(){
-        for(let i = 0; i<3; i++){
+    function putCardInBeginning(from, to){
+        for(let i = from; i<to; i++){
             cardsWrapper.prepend(createCard(i));
         }
         
@@ -156,51 +207,63 @@ document.addEventListener("DOMContentLoaded", function(){
     function genCards(arrInitial, arrMiddleCards){
         let genedArr = []
         let i = 0;
+        let flag = false;
         arrInitial = arrInitial.sort(() => Math.random() - 0.5);
-        while (genedArr.length<3){
-            if(arrInitial[i]!=arrMiddleCards[0] && arrInitial[i]!=arrMiddleCards[1] && arrInitial[i]!=arrMiddleCards[2]){
-                genedArr.push(arrInitial[i]);
-                
+        while (genedArr.length<arrMiddleCards.length){
+            for(let j = 0; j<arrMiddleCards.length; j++){
+                if(arrInitial[i]===arrMiddleCards[j]){
+                    i++;
+                    flag = false;
+                    break; 
+                }else flag = true;  
             }
-            i++;
+            if(flag ===true){
+                genedArr.push(arrInitial[i]);
+                i++;
+            }
+            
         }
-        console.log(arrMiddleCards[0].name, arrMiddleCards[1].name, arrMiddleCards[2].name, genedArr[0].name, genedArr[1].name, genedArr[2].name);
+        //console.log(arrMiddleCards[0].name, arrMiddleCards[1].name, arrMiddleCards[2].name, genedArr[0].name, genedArr[1].name, genedArr[2].name);
         return genedArr;
       }
 
       arrowNext.addEventListener('click', ()=>{
         cardsWrapper.style.transitionDuration = '0s';
-        cardsWrapper.children[0].remove();
-        cardsWrapper.children[0].remove();
-        cardsWrapper.children[0].remove();
+        for(let i = 0; i<arrShowCards.length; i++){
+            cardsWrapper.children[0].remove();
+        }
         cardsWrapper.style.left = '0px';
-        arrShowCards = [arrPetsInWrapper[6], arrPetsInWrapper[7], arrPetsInWrapper[8]];
-        arrPetsInWrapper.push(...genCards(arrPets, arrShowCards));
-        arrPetsInWrapper.splice(0, 3);
-        putCardInEnd(6, 9);
+        arrShowCards = arrPetsInWrapper[2];
+        arrPetsInWrapper.push(genCards(arrPets, arrShowCards));
+        arrPetsInWrapper.splice(0, 1);
+        putCardInEnd(numCards*2, numCards*3);
 
         setTimeout(()=>{
             cardsWrapper.style.transitionDuration = '0.5s';
-            cardsWrapper.style.left = '-1080px';
+            
+            cardsWrapper.style.left = `-${leftSide}px`;
+            
+            
         }, 0);
         
       })
 
       arrowPrev.addEventListener('click', ()=>{
         cardsWrapper.style.transitionDuration = '0s';
-        cardsWrapper.children[cardsWrapper.children.length-1].remove();
-        cardsWrapper.children[cardsWrapper.children.length-1].remove();
-        cardsWrapper.children[cardsWrapper.children.length-1].remove();
-        arrShowCards = [arrPetsInWrapper[0], arrPetsInWrapper[1], arrPetsInWrapper[2]];
-        arrPetsInWrapper.unshift(...genCards(arrPets, arrShowCards));
-        arrPetsInWrapper.splice(6, 3);
-        putCardInBeginning();
-        cardsWrapper.style.left = '-2160px';
+        for(let i = 0; i<arrShowCards.length; i++){
+            cardsWrapper.children[cardsWrapper.children.length-1].remove();
+        }
+        arrShowCards = arrPetsInWrapper[0];
+        arrPetsInWrapper.unshift(genCards(arrPets, arrShowCards));
+        arrPetsInWrapper.splice(2, 1);
+        putCardInBeginning(0, arrShowCards.length);
+        cardsWrapper.style.left = `-${leftSide*2}px`;
         setTimeout(()=>{
             cardsWrapper.style.transitionDuration = '0.5s';
-            cardsWrapper.style.left = '-1080px';
+            cardsWrapper.style.left = `-${leftSide}px`;
         }, 0);
       })
+    
 })
 
 
