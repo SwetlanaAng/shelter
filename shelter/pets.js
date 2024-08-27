@@ -139,9 +139,10 @@ let arrPets = [
         const card = document.createElement('div');
         card.classList.add('card');
         card.innerHTML = `
+        <div class="click" id="${cardSource.name}"></div>
         <div class="card_img"><img src="${cardSource.img}" alt="${cardSource.name}"></div>
                     <h4>${cardSource.name}</h4>
-                    <button class="light_button">Learn more</button>`;          
+                    <button class="light_button light_button_pets">Learn more</button>`;          
         sliderPets.append(card);
 }
 defineNumCards();
@@ -253,4 +254,63 @@ doubleArrowLeft.addEventListener('click', ()=>{
         arrowRight.classList.remove('disabled');
         doubleArrowRight.classList.remove('disabled');
 })
+
+// popUp
+function createPopUp(index){
+    const cardSource = arrPets[index];
+        const close = document.createElement('div');
+        close.classList.add('close');
+        
+        const card = document.createElement('div');
+        card.classList.add('pop_up_card');
+        card.innerHTML = `
+        <div class="pop_img"><img src="${cardSource.img}" alt="${cardSource.name}"></div>
+        <div class="pop_info">
+            <h3 class="h3">${cardSource.name}</h3>
+            <h4 class="h4 pop_subheader">${cardSource.type} - ${cardSource.breed}</h4>
+            <div class="pop_text">${cardSource.description}</div>
+            <ul class="pop_list">
+                <li><span>Age: ${cardSource.age}</span></li>
+                <li><span>Inoculations: ${cardSource.inoculations}</span></li>
+                <li><span>Diseases: ${cardSource.diseases}</span></li>
+                <li><span>Parasites: ${cardSource.parasites}</span></li>
+            </ul>
+        </div>`;  
+        popUpBg.append(close);        
+        popUpBg.append(card);
+}
+const popUpBg = document.querySelector('.pop_up_bg');
+const click = document.querySelectorAll('.click');
+let cross;
+click.forEach((el)=>{
+    el.addEventListener('click', (event)=>{
+        
+        const name = event.target.id;
+        for(let i = 0; i<arrPets.length; i++){
+            if(arrPets[i].name === name){
+                createPopUp(i);
+            }
+        }
+        popUpBg.style.top = `${document.documentElement.scrollTop}px`;
+        document.body.classList.toggle('scroll_blocked');
+        popUpBg.classList.toggle('hide');
+        createPopUp();
+        cross = document.querySelector('.close');
+        cross.addEventListener('click', ()=>{
+            document.body.classList.toggle('scroll_blocked');
+            popUpBg.innerHTML = '';
+            popUpBg.classList.toggle('hide');}) 
+    }) 
+})
+popUpBg.addEventListener('click', (event)=>{
+    console.log(event.target.className);
+    if(event.target.className === 'pop_up_bg' || event.target.className === 'close'){
+        document.body.classList.toggle('scroll_blocked');
+        popUpBg.innerHTML = '';
+        popUpBg.classList.toggle('hide');
+    }
+    
+})
+
+ 
 })
