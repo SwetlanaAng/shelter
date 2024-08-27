@@ -134,7 +134,6 @@ document.addEventListener("DOMContentLoaded", function(){
         }else if (document.documentElement.clientWidth<1231 && document.documentElement.clientWidth>767){
             numCards = 2;
             leftSide = 632;
-            //cardsWrapper.style.columnGap = 280;
         }
         else {numCards = 1;
         leftSide = 290;}
@@ -149,10 +148,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 cardsWrapper.innerHTML = '';
                 initial(numCards, leftSide) ;
             }
-        
-        /* cardsWrapper.style.columnGap = (window.getComputedStyle(cardsWindow).width - 348*numCards)/numCards + 'px';
-        console.log(cardsWrapper.style.columnGap) */
-        //cardsWrapper.style.columnGap = `${startWindowWith-document.documentElement.clientWidth}px`    
       }); 
      
     function createArrShowCards(iC){
@@ -161,6 +156,7 @@ document.addEventListener("DOMContentLoaded", function(){
             arrShowCards.push(arrPets[i]);
         }
     }
+
     function initial(imageCount, leftS){
         arrPets = arrPets.sort(() => Math.random() - 0.5);
         createArrShowCards(imageCount);
@@ -177,9 +173,7 @@ document.addEventListener("DOMContentLoaded", function(){
         console.log(leftS);
         cardsWrapper.style.left = `-${leftS}px`;
     }
-    
-
-
+ 
     function createCard(index) {
         const cardSource = arrPetsInWrapper.flat()[index];
             const card = document.createElement('div');
@@ -191,6 +185,7 @@ document.addEventListener("DOMContentLoaded", function(){
                         console.log('hi')           
             return card;
     }
+
     function putCardInEnd(from, to){
         for(let i = from; i<to; i++){
             cardsWrapper.append(createCard(i));
@@ -220,10 +215,8 @@ document.addEventListener("DOMContentLoaded", function(){
             if(flag ===true){
                 genedArr.push(arrInitial[i]);
                 i++;
-            }
-            
+            }  
         }
-        //console.log(arrMiddleCards[0].name, arrMiddleCards[1].name, arrMiddleCards[2].name, genedArr[0].name, genedArr[1].name, genedArr[2].name);
         return genedArr;
       }
 
@@ -240,12 +233,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
         setTimeout(()=>{
             cardsWrapper.style.transitionDuration = '0.5s';
-            
-            cardsWrapper.style.left = `-${leftSide}px`;
-            
-            
+            cardsWrapper.style.left = `-${leftSide}px`;  
         }, 0);
-        
       })
 
       arrowPrev.addEventListener('click', ()=>{
@@ -263,7 +252,6 @@ document.addEventListener("DOMContentLoaded", function(){
             cardsWrapper.style.left = `-${leftSide}px`;
         }, 0);
       })
-    
 })
 
 
