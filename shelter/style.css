@@ -584,10 +584,13 @@ li>.active_pets {
     justify-content: center;
     align-items: center;
 }
+.pop_up_card{
+    position: relative;
+}
 .close{
     position: absolute;
-    top: 111px;
-    left: 1149px;
+    top: -46px;
+    left: 890px;
     outline: 2px solid #F1CDB3;
     border-radius: 100%;
     padding: 24px;
@@ -649,8 +652,8 @@ padding-top: 13px;
 .pop_list>li>span{
     color: #000000;;
     font-family: Georgia;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 13px;
+    font-weight: 400;
     line-height: 16.5px;
     letter-spacing: 0.06em;
     text-align: left;

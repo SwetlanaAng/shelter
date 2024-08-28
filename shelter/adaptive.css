@@ -145,8 +145,34 @@
     .our_friends_button {
         margin: 31px 1px 100px 1px;
     }
-    .woody {
-        display: none;
+    .pop_info{
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    .pop_up_card{
+        width: 630px;
+        height: 350px;
+    }
+    .pop_img>img{
+        width: 350px;
+    }
+    .pop_subheader{
+        margin-bottom: 8px;
+    }
+    .pop_text{
+        font-size: 13px;
+        line-height: 14.3px;
+    }
+    .pop_list{
+        margin: 0;
+        padding-top: 10px;
+    }
+    .pop_list>li{
+        padding-top: 5px;
+        padding-bottom: 0;
+    }
+    .close{
+        left: 613px;
     }
     .navigation_pets {
         padding-top: 43px;
@@ -335,6 +361,9 @@
         align-items: center;
         padding: 28px 10px 38px;
     }
+    .about_container_pets{
+        height: 1472px;
+    }
     .about .about_text_content {
         width: 90%;
         padding: 14px 15px;
@@ -372,7 +401,7 @@
         padding: 0;
         padding-top: 57px;
         padding-left: 13px;
-        height: 100%;
+        height: 500px;
     } 
      .slider_pets {
         width: 85%;
@@ -443,8 +472,44 @@
         position: relative;
     }
     .our_friends_button {
-        margin-top: 90px;
+        margin-top: 30px;
         margin-bottom: 1px;
+    }
+    .pop_up_card{
+        width: 240px;
+        height: 341px;
+    }
+    .pop_img{
+        display: none;
+    }
+    .pop_info{
+        margin-top: 17px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .pop_info>.h3{
+        text-align: center;
+        font-size: 35px;
+    }
+    .pop_subheader{
+        font-size: 17px;
+        margin-bottom: 5px;
+        margin-top: 16px;
+        text-align: center;
+    }
+    .pop_text{
+        font-size: 13px;
+        text-align: justify;
+        line-height: 14.3px;
+    }
+    .pop_list{
+        padding-top: 8px;
+    }
+    .pop_list>li{
+        padding-bottom: 5px;
+    }
+    .close{
+        left: 222px;
     }
     .help {
         padding-top: 41px;

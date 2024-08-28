@@ -210,6 +210,7 @@ window.addEventListener('resize', () => {
         doubleArrowLeft.classList.add('disabled');
         arrowRight.classList.remove('disabled');
         doubleArrowRight.classList.remove('disabled');
+        createNewClickEvent()
     }
 }); 
 
@@ -258,12 +259,10 @@ doubleArrowLeft.addEventListener('click', ()=>{
 // popUp
 function createPopUp(index){
     const cardSource = arrPets[index];
-        const close = document.createElement('div');
-        close.classList.add('close');
-        
         const card = document.createElement('div');
         card.classList.add('pop_up_card');
         card.innerHTML = `
+        <div class="close"></div>
         <div class="pop_img"><img src="${cardSource.img}" alt="${cardSource.name}"></div>
         <div class="pop_info">
             <h3 class="h3">${cardSource.name}</h3>
@@ -275,13 +274,33 @@ function createPopUp(index){
                 <li><span>Diseases: ${cardSource.diseases}</span></li>
                 <li><span>Parasites: ${cardSource.parasites}</span></li>
             </ul>
-        </div>`;  
-        popUpBg.append(close);        
+        </div>`;      
         popUpBg.append(card);
 }
 const popUpBg = document.querySelector('.pop_up_bg');
-const click = document.querySelectorAll('.click');
-let cross;
+
+function createNewClickEvent(){
+    click = document.querySelectorAll('.click');
+
+    click.forEach((el)=>{
+        el.addEventListener('click', (event)=>{
+            
+            const name = event.target.id;
+            for(let i = 0; i<arrPets.length; i++){
+                if(arrPets[i].name === name){
+                    createPopUp(i);
+                }
+            }
+            popUpBg.style.top = `${document.documentElement.scrollTop}px`;
+            document.body.classList.toggle('scroll_blocked');
+            popUpBg.classList.toggle('hide');
+            createPopUp();
+            
+        }) 
+})
+}
+let click = document.querySelectorAll('.click');
+
 click.forEach((el)=>{
     el.addEventListener('click', (event)=>{
         
@@ -295,11 +314,7 @@ click.forEach((el)=>{
         document.body.classList.toggle('scroll_blocked');
         popUpBg.classList.toggle('hide');
         createPopUp();
-        cross = document.querySelector('.close');
-        cross.addEventListener('click', ()=>{
-            document.body.classList.toggle('scroll_blocked');
-            popUpBg.innerHTML = '';
-            popUpBg.classList.toggle('hide');}) 
+        
     }) 
 })
 popUpBg.addEventListener('click', (event)=>{

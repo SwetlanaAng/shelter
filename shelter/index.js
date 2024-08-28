@@ -136,7 +136,7 @@ document.addEventListener("DOMContentLoaded", function(){
             leftSide = 632;
         }
         else {numCards = 1;
-        leftSide = 290;}
+        leftSide = 282;}
     }
     
     referNumCards();
@@ -147,6 +147,7 @@ document.addEventListener("DOMContentLoaded", function(){
             if (oldNumCards!=numCards){
                 cardsWrapper.innerHTML = '';
                 initial(numCards, leftSide) ;
+                createNewClickEventMain()
             }
       }); 
      
@@ -178,7 +179,9 @@ document.addEventListener("DOMContentLoaded", function(){
         const cardSource = arrPetsInWrapper.flat()[index];
             const card = document.createElement('div');
             card.classList.add('card');
+            card.classList.add(`${cardSource.name}`);
             card.innerHTML = `
+            <div class="click ${cardSource.name}"></div>
             <div class="card_img"><img src="${cardSource.img}" alt="${cardSource.name}"></div>
                         <h4>${cardSource.name}</h4>
                         <button class="light_button">Learn more</button>`
@@ -252,6 +255,75 @@ document.addEventListener("DOMContentLoaded", function(){
             cardsWrapper.style.left = `-${leftSide}px`;
         }, 0);
       })
+      // pop up
+      function createPopUp(index){
+        const cardSource = arrPets[index];
+            
+            const card = document.createElement('div');
+            card.classList.add('pop_up_card');
+            card.innerHTML = `
+            <div class="close"></div>
+            <div class="pop_img"><img src="${cardSource.img}" alt="${cardSource.name}"></div>
+            <div class="pop_info">
+                <h3 class="h3">${cardSource.name}</h3>
+                <h4 class="h4 pop_subheader">${cardSource.type} - ${cardSource.breed}</h4>
+                <div class="pop_text">${cardSource.description}</div>
+                <ul class="pop_list">
+                    <li><span><b>Age:</b> ${cardSource.age}</span></li>
+                    <li><span><b>Inoculations:</b> ${cardSource.inoculations}</span></li>
+                    <li><span><b>Diseases:</b> ${cardSource.diseases}</span></li>
+                    <li><span><b>Parasites:</b> ${cardSource.parasites}</span></li>
+                </ul>
+            </div>`;          
+            popUpBg.append(card);
+    }
+    const popUpBg = document.querySelector('.pop_up_bg');
+    let click = document.querySelectorAll('.click');
+    
+    click.forEach((el)=>{
+        el.addEventListener('click', (event)=>{
+            console.log(event.target.classList[1]);
+            const name = event.target.classList[1];
+            for(let i = 0; i<arrPets.length; i++){
+                if(arrPets[i].name === name){
+                    createPopUp(i);
+                }
+            }
+            popUpBg.style.top = `${document.documentElement.scrollTop}px`;
+            document.body.classList.toggle('scroll_blocked');
+            popUpBg.classList.toggle('hide');
+            createPopUp();
+            
+        }) 
+    })
+    function createNewClickEventMain(){
+        click = document.querySelectorAll('.click');
+        click.forEach((el)=>{
+            el.addEventListener('click', (event)=>{
+                console.log(event.target.classList[1]);
+                const name = event.target.classList[1];
+                for(let i = 0; i<arrPets.length; i++){
+                    if(arrPets[i].name === name){
+                        createPopUp(i);
+                    }
+                }
+                popUpBg.style.top = `${document.documentElement.scrollTop}px`;
+                document.body.classList.toggle('scroll_blocked');
+                popUpBg.classList.toggle('hide');
+                createPopUp();
+                
+            }) 
+        })
+    }
+    popUpBg.addEventListener('click', (event)=>{
+        console.log(event.target.className);
+        if(event.target.className === 'pop_up_bg' || event.target.className === 'close'){
+            document.body.classList.toggle('scroll_blocked');
+            popUpBg.innerHTML = '';
+            popUpBg.classList.toggle('hide');
+        }
+        
+    })
 })
 
 
