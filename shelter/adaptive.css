@@ -91,7 +91,7 @@
     }
     .our_friends{
         padding-bottom: 0;
-        padding-top: 80px;
+        padding-top: 78px;
     }
     .slider {
         padding: 52px 27px 0 17px;
@@ -138,7 +138,7 @@
         margin-top: 1px;
     }
     .our_friends_button {
-        margin: 31px 1px 100px 1px;
+        margin: 59px 1px 100px 1px;
     }
     .pop_info{
         margin-top: 10px;
@@ -397,9 +397,9 @@
         height: 500px;
     } 
      .slider_pets {
-        width: 85%;
+        width: 89%;
         padding-top: 43px;
-        row-gap: 31px;
+        row-gap: 38px;
     }
     .light_button_pets {
         margin-bottom: 33px;

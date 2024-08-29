@@ -245,7 +245,7 @@ li>.active_pets {
     align-items: center;
 }
 .slider {
-    width: 93.7%;
+    width: 95.7%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -256,7 +256,7 @@ li>.active_pets {
     padding-top: 57px;
 }
 .slider_pets .card {
-    margin: 0;
+    margin: -2px;
 }
 .slider_pets .card h4 {
     line-height: 24px;
@@ -342,7 +342,7 @@ li>.active_pets {
     transition-duration: 0.6s;
 }
 .our_friends_button {
-    margin-top: 31px;
+    margin-top: 57px;
     width: 261px;
     height: 52px;
     border: none;
