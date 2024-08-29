@@ -5,6 +5,11 @@ body {
     margin: 0;
     padding: 0;
 }
+.wrapper{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
 .header_not_only_container {
     background: url(./img/tile.png), radial-gradient(237.5% 111.8% at 0% 0%, rgb(91, 72, 58) 0%, rgb(38, 36, 37) 100%);
 }
@@ -194,7 +199,7 @@ li>.active_pets {
 .our_friends_container {
     display: flex;
     flex-direction: column;
-    align-items: center
+    align-items: center;
 }
 .about .about_text_content {
     padding: 14px 0 14px 120px;
@@ -204,6 +209,9 @@ li>.active_pets {
     display: flex;
     flex-direction: column;
     align-items:center;
+}
+.about_container_pets{
+    max-width: 1280px;
 }
 .about_text_content h3 {
     text-align: left; 
@@ -226,13 +234,18 @@ li>.active_pets {
     text-align: center;
     padding-top: 83px;
     padding-bottom: 102px;
+    display: flex;
+    justify-content: center;
 }
 .our_friends_pets {
     padding-top: 81px;
     padding-bottom: 101px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .slider {
-    width: 93.7%;
+    width: 95.7%;
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
@@ -243,18 +256,34 @@ li>.active_pets {
     padding-top: 57px;
 }
 .slider_pets .card {
-    margin: 0;
-    padding-bottom: 29px;
+    margin: -2px;
 }
 .slider_pets .card h4 {
     line-height: 24px;
 }
+.cards_window{
+    overflow: hidden;
+    width: 89%;
+    position: relative;
+}
+.cards_wrapper {
+    display: flex;
+    column-gap: 12px;
+    position: absolute;
+    left: -1080px;
+    transition: all .5s linear;
+}
 .card {
     background-color: #FAFAFA;
     text-align: center;
-    padding-bottom: 30px;
     margin: 1px 39px 30px;
     transition: 0.5s;
+}
+.click{
+    width: 270px;
+    height: 434px;
+    position: absolute;
+    z-index: 3;
 }
 .card:hover .light_button{
     background-color: #F1CDB3;
@@ -284,6 +313,7 @@ li>.active_pets {
     border-radius: 100px;
     border: 2px solid #F1CDB3;
     margin-top: 4px;
+    margin-bottom: 33px;
     height: 52px;
     width: 187px;
     background: none;
@@ -304,16 +334,15 @@ li>.active_pets {
 }
 .prev, .next {
     padding: 23px 19px;
-    
     margin-right: 3px;
     margin-bottom: 24px;
 }
-.prev:hover, .next:hover{
+.arrow:hover{
     background-color: #F1CDB3;
     transition-duration: 0.6s;
 }
 .our_friends_button {
-    margin-top: 31px;
+    margin-top: 57px;
     width: 261px;
     height: 52px;
     border: none;
@@ -328,8 +357,8 @@ li>.active_pets {
 .navigation a {
     display: block;
 }
-.double_arrow_left_pets, .arrow_left_pets {
-    outline: 2px solid #CDCDCD;
+.double_arrow_left_pets, .arrow_left_pets, .arrow_right_pets, .double_arrow_right_pets {
+    outline: 2px solid #F1CDB3;
     border-radius: 100%;
     margin: 1px 10px;
 }
@@ -344,10 +373,12 @@ li>.active_pets {
     border-radius: 100%;
     margin: 1px 10px;
 }
-a.disabled {
+.disabled {
+    outline: 2px solid #CDCDCD;
     pointer-events: none;
+    color: #CDCDCD
 }
-a.disabled:hover {
+.disabled:hover {
     cursor: not-allowed;
 }
 .double_arrow_right_pets:hover, .arrow_right_pets:hover {
@@ -378,7 +409,6 @@ a.disabled:hover {
 .help_ul {
     max-width: 1200px;
     margin: 0;
-    
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -538,4 +568,153 @@ a.disabled:hover {
 .footer ul>li .link_container:hover {
     transform: scale(1.1);
     cursor: pointer;
+}
+.pop_up_bg{
+    width: 100vw;
+    height: 100vh;
+    background:rgba(41, 41, 41, 0.6);
+    position: absolute;
+    z-index: 7;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.pop_up_card{
+    position: relative;
+}
+.close{
+    position: absolute;
+    top: -46px;
+    left: 890px;
+    outline: 2px solid #F1CDB3;
+    border-radius: 100%;
+    padding: 24px;
+}
+.close:before,
+.close:after {
+    content: "";
+    position: absolute;
+    top: 23px;
+    left: 15px;
+    width: 18px;
+    height: 2px;
+    background: #000000;
+}
+.close:before {
+    transform: rotate(45deg);
+}
+
+.close:after {
+    transform: rotate(-45deg);
+}
+.close:hover{
+    background-color:#F1CDB3;
+}
+.pop_up_card{
+    width: 900px;
+    height: 500px;
+    background-color: #FAFAFA;
+    display: flex;
+    border-radius: 19px 19px 19px 19px;
+}
+.pop_subheader {
+    font-family: Georgia;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0.06em;
+    text-align: left;
+    margin-top: 9px;
+}
+.pop_text{
+    font-family: Georgia;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 17.5px;
+    letter-spacing: 0.06em;
+    text-align: left;
+    padding-top: 13px;
+}
+.pop_list{
+    padding: 21px 0 0 15px; 
+}
+.pop_list>li{
+    color: #F1CDB3;
+    padding-bottom: 10px;
+}
+.pop_list>li>span{
+    color: #000000;;
+    font-family: Georgia;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 16.5px;
+    letter-spacing: 0.06em;
+    text-align: left;
+ }
+ .pop_info{
+    margin-right: 20px;
+    margin-top: 50px;
+    margin-left: 29px;
+ }
+.pop_img>img{
+    width: 500px;
+    border-radius:19px;
+}
+.pop_info>.h3{
+    text-align: start;
+}
+.menu_background{
+    width: 100vw;
+    height: 100vh;
+    background:rgba(41, 41, 41, 0.6);
+    position: absolute;
+    z-index: 2;
+}
+.scroll_blocked{
+    overflow: hidden;
+}
+.menu, .menu_pets{
+    width: 320px;
+    height:  100vh;
+    position: absolute;
+    right: -320px;
+    background-color: #292929;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    transition: all .6s ease-in-out;
+}
+.menu_show{
+    right: 0;
+}
+.nav_ul_small_screens{
+    padding-left: 0;
+    display: flex;
+    flex-direction: column;
+    padding-top: 4px;
+    row-gap: 40px;
+}
+.nav_ul_small_screens li {
+    list-style-type: none;
+    text-align: center;
+}
+.nav_ul_small_screens li>.active{
+    padding-bottom: 7px;
+}
+.nav_ul_small_screens a {
+    text-decoration: none;
+    color: #CDCDCD;
+    font-size: 32px;
+    font-weight: 400;
+    font-family: Arial;
+    line-height: 51.2px;
+    text-align: center;
+}
+.nav_ul_small_screens li a:hover{
+    color: #FAFAFA;
+    transition-duration: 0.6s;
+} 
+.hide{
+    display: none;
 }
