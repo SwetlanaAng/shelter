@@ -91,19 +91,19 @@
     }
     .our_friends{
         padding-bottom: 0;
-        padding-top: 80px;
+        padding-top: 78px;
     }
     .slider {
         padding: 52px 27px 0 17px;
+    }
+    .cards_window{
+        width: 585px;
     }
     .slider_pets {
         flex-wrap: wrap;
         width: 75.5%;
         padding: 24px 1px 0;
         row-gap: 27px;
-    }
-    .scarlett, .freddie {
-        display: none;
     }
     .arrow_prev {
         position: relative;
@@ -120,6 +120,9 @@
         position: relative;
         right: 6px;
     }
+    .cards_wrapper {
+        column-gap: 0px;
+    }
     .card {
         margin: 3px 17px 30px 22px;
     }
@@ -135,10 +138,36 @@
         margin-top: 1px;
     }
     .our_friends_button {
-        margin: 31px 1px 100px 1px;
+        margin: 59px 1px 100px 1px;
     }
-    .woody {
-        display: none;
+    .pop_info{
+        margin-top: 10px;
+        margin-left: 10px;
+    }
+    .pop_up_card{
+        width: 630px;
+        height: 350px;
+    }
+    .pop_img>img{
+        width: 350px;
+    }
+    .pop_subheader{
+        margin-bottom: 8px;
+    }
+    .pop_text{
+        font-size: 13px;
+        line-height: 14.3px;
+    }
+    .pop_list{
+        margin: 0;
+        padding-top: 10px;
+    }
+    .pop_list>li{
+        padding-top: 5px;
+        padding-bottom: 0;
+    }
+    .close{
+        left: 613px;
     }
     .navigation_pets {
         padding-top: 43px;
@@ -250,7 +279,7 @@
 @media (max-width: 767px) and (min-width: 320px){
     .nav_ul {
         display: none;
-    }
+    } 
     .h3 {
         font-size: 25px;
         font-weight: 400;
@@ -270,10 +299,24 @@
         padding-bottom: 29px;
     }
     .nav {
-        background-image: url(./img/Burger.png);
+        position:relative;
         width: 30px;
         height: 22px;
         margin-top: 19px;
+        z-index: 6;
+        transition: all .6s linear;
+    }
+    .nav::before{
+    content: '';
+    box-shadow: 0 10px #F1CDB3,0 20px #F1CDB3;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background: #F1CDB3;
+    border-radius: 10px;
+}
+    .burger_rotate{
+        transform: rotate(90deg);
     }
     .not_only {
         flex-direction: column;
@@ -311,6 +354,9 @@
         align-items: center;
         padding: 28px 10px 38px;
     }
+    .about_container_pets{
+        height: 1472px;
+    }
     .about .about_text_content {
         width: 90%;
         padding: 14px 15px;
@@ -343,29 +389,24 @@
         padding-bottom: 37px;
         padding-top: 41px;
     }
-    .slider {
-        max-width: 275px;
+     .slider {
+        max-width: 300px;
         padding: 0;
         padding-top: 57px;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-    }
-    .slider_pets {
-        width: 85%;
+        padding-left: 13px;
+        height: 500px;
+    } 
+     .slider_pets {
+        width: 89%;
         padding-top: 43px;
-        row-gap: 31px;
+        row-gap: 38px;
     }
-    .slider_pets .card {
-        padding-bottom: 33px;
+    .light_button_pets {
+        margin-bottom: 33px;
     }
     .slider_pets .card h4 {
         padding-top: 0;
         line-height: 21px;
-    }
-    .freddie, .scarlett, .charly,
-    .timmy, .sophia {
-        display: none;
     }
     .navigation_pets {
         padding-bottom: 0;
@@ -384,32 +425,77 @@
     .card h4 {
         padding-top: 3px;
     }
-    .card_img img {
-        width: 100%;
-    }
     .card_img {
         left: 0;
     }
     .card_img_pets {
         left: 0;
     }
-     .arrow_next{
-        order: 1;
-        height: 56px;
-        position: absolute;
-        top: 495px;
-        left: 176px;
+    .arrow_next{ 
+        position: absolute; 
     }
     .arrow_prev {
         height: 47px;
         padding-left: 44px;
+        position: absolute;
+    }
+    .arrow_next>.arrow, .arrow_prev>.arrow {
+        position: relative;
+    }
+    .arrow_next>.arrow{
+        top: 247px;
+        left: 176px;
+    }
+    .arrow_prev>.arrow{
+        top: 442px;
+        left: 0px;
+    }
+    .cards_window{
+        position: absolute;
+        width: 279px;
+    }
+    .cards_wrapper {
+        position: relative;
     }
     .our_friends_button {
-        margin-top: 43px;
+        margin-top: 30px;
         margin-bottom: 1px;
     }
-    .jennifer, .woody {
+    .pop_up_card{
+        width: 240px;
+        height: 341px;
+    }
+    .pop_img{
         display: none;
+    }
+    .pop_info{
+        margin-top: 17px;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+    .pop_info>.h3{
+        text-align: center;
+        font-size: 35px;
+    }
+    .pop_subheader{
+        font-size: 17px;
+        margin-bottom: 5px;
+        margin-top: 16px;
+        text-align: center;
+    }
+    .pop_text{
+        font-size: 13px;
+        text-align: justify;
+        line-height: 14.3px;
+    }
+    .pop_list{
+        padding-top: 8px;
+    }
+    .pop_list>li{
+        padding-bottom: 5px;
+    }
+    .close{
+        left: 222px;
     }
     .help {
         padding-top: 41px;
