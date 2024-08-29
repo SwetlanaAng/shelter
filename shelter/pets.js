@@ -19,8 +19,6 @@ document.addEventListener("DOMContentLoaded", function(){
             openCloseBurger();
         }
     })
-
-
     //pagination
 let arrPets = [
     {
@@ -148,7 +146,6 @@ let arrPets = [
 defineNumCards();
 initial(0, numCards);
 
-
 function createArr(){
     let arr = []
     let tempVar;
@@ -225,6 +222,7 @@ arrowRight.addEventListener('click', ()=>{
         doubleArrowRight.classList.add('disabled');
     }
     initial((pageNumber-1)*numCards, pageNumber*numCards);
+    createNewClickEvent()
 })
 arrowLeft.addEventListener('click', ()=>{
     arrowRight.classList.remove('disabled');
@@ -236,6 +234,7 @@ arrowLeft.addEventListener('click', ()=>{
         doubleArrowLeft.classList.add('disabled');
     }
     initial((pageNumber-1)*numCards, pageNumber*numCards); 
+    createNewClickEvent()
 })
 doubleArrowRight.addEventListener('click', ()=>{
     pageNumber = maxPage+1;
@@ -245,15 +244,17 @@ doubleArrowRight.addEventListener('click', ()=>{
     doubleArrowRight.classList.add('disabled');
     arrowLeft.classList.remove('disabled');
     doubleArrowLeft.classList.remove('disabled');
+    createNewClickEvent()
 })
 doubleArrowLeft.addEventListener('click', ()=>{
     initial(0, numCards) ;
-        page.innerHTML = 1;
-        pageNumber = 1;
-        arrowLeft.classList.add('disabled');
-        doubleArrowLeft.classList.add('disabled');
-        arrowRight.classList.remove('disabled');
-        doubleArrowRight.classList.remove('disabled');
+    page.innerHTML = 1;
+    pageNumber = 1;
+    arrowLeft.classList.add('disabled');
+    doubleArrowLeft.classList.add('disabled');
+    arrowRight.classList.remove('disabled');
+    doubleArrowRight.classList.remove('disabled');
+    createNewClickEvent()
 })
 
 // popUp
@@ -295,7 +296,6 @@ function createNewClickEvent(){
             document.body.classList.toggle('scroll_blocked');
             popUpBg.classList.toggle('hide');
             createPopUp();
-            
         }) 
 })
 }
@@ -314,7 +314,6 @@ click.forEach((el)=>{
         document.body.classList.toggle('scroll_blocked');
         popUpBg.classList.toggle('hide');
         createPopUp();
-        
     }) 
 })
 popUpBg.addEventListener('click', (event)=>{
@@ -324,8 +323,5 @@ popUpBg.addEventListener('click', (event)=>{
         popUpBg.innerHTML = '';
         popUpBg.classList.toggle('hide');
     }
-    
 })
-
- 
 })

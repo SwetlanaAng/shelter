@@ -8,7 +8,6 @@
         padding-bottom: 0;
         padding-top: 80px;
     }
-    
     .slider {
         padding: 53px 28px 0;;
         flex-wrap: nowrap;
@@ -94,7 +93,6 @@
         padding-bottom: 0;
         padding-top: 80px;
     }
-    
     .slider {
         padding: 52px 27px 0 17px;
     }
@@ -106,9 +104,6 @@
         width: 75.5%;
         padding: 24px 1px 0;
         row-gap: 27px;
-    }
-    .scarlett, .freddie {
-        display: none;
     }
     .arrow_prev {
         position: relative;
@@ -285,7 +280,6 @@
     .nav_ul {
         display: none;
     } 
-
     .h3 {
         font-size: 25px;
         font-weight: 400;
@@ -324,7 +318,6 @@
     .burger_rotate{
         transform: rotate(90deg);
     }
-    
     .not_only {
         flex-direction: column;
         justify-content: center;
@@ -415,7 +408,6 @@
         padding-top: 0;
         line-height: 21px;
     }
-    
     .navigation_pets {
         padding-bottom: 0;
         padding-top: 37px;
@@ -433,21 +425,15 @@
     .card h4 {
         padding-top: 3px;
     }
-    /* .card_img img {
-        width: 100%;
-    } */
     .card_img {
         left: 0;
     }
     .card_img_pets {
         left: 0;
     }
-    .arrow_next{
-        
-        position: absolute;
-        
-    } /* .*/
-
+    .arrow_next{ 
+        position: absolute; 
+    }
     .arrow_prev {
         height: 47px;
         padding-left: 44px;

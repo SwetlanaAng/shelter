@@ -91,7 +91,6 @@ let arrPets = [
   ]
 document.addEventListener("DOMContentLoaded", function(){
     const burger = document.querySelector(".nav");
-    
     const menu = document.querySelector(".menu");
     const menuBackground = document.querySelector(".menu_background");
     menuBackground.classList.add('hide');
@@ -106,7 +105,6 @@ document.addEventListener("DOMContentLoaded", function(){
     let arrPetsInWrapper = [];
 
     //burger
-
 
     function openCloseBurger(){
         menuBackground.classList.toggle('hide');
@@ -124,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function(){
     })
 
     //slider
-    console.log(document.documentElement.clientWidth);
     let numCards =0;
     let leftSide = 0;
     function referNumCards(){
@@ -135,8 +132,9 @@ document.addEventListener("DOMContentLoaded", function(){
             numCards = 2;
             leftSide = 632;
         }
-        else {numCards = 1;
-        leftSide = 282;}
+        else {
+            numCards = 1;
+            leftSide = 282;}
     }
     
     referNumCards();
@@ -198,12 +196,11 @@ document.addEventListener("DOMContentLoaded", function(){
     function putCardInBeginning(from, to){
         for(let i = from; i<to; i++){
             cardsWrapper.prepend(createCard(i));
-        }
-        
+        } 
     }
 
     function genCards(arrInitial, arrMiddleCards){
-        let genedArr = []
+        let genedArr = [];
         let i = 0;
         let flag = false;
         arrInitial = arrInitial.sort(() => Math.random() - 0.5);
@@ -245,37 +242,37 @@ document.addEventListener("DOMContentLoaded", function(){
         for(let i = 0; i<arrShowCards.length; i++){
             cardsWrapper.children[cardsWrapper.children.length-1].remove();
         }
+        cardsWrapper.style.left = `-${leftSide*2}px`;
         arrShowCards = arrPetsInWrapper[0];
         arrPetsInWrapper.unshift(genCards(arrPets, arrShowCards));
-        arrPetsInWrapper.splice(2, 1);
+        arrPetsInWrapper.splice(3, 1);
         putCardInBeginning(0, arrShowCards.length);
-        cardsWrapper.style.left = `-${leftSide*2}px`;
+        
         setTimeout(()=>{
             cardsWrapper.style.transitionDuration = '0.5s';
             cardsWrapper.style.left = `-${leftSide}px`;
         }, 0);
       })
       // pop up
-      function createPopUp(index){
+    function createPopUp(index){
         const cardSource = arrPets[index];
-            
-            const card = document.createElement('div');
-            card.classList.add('pop_up_card');
-            card.innerHTML = `
-            <div class="close"></div>
-            <div class="pop_img"><img src="${cardSource.img}" alt="${cardSource.name}"></div>
-            <div class="pop_info">
-                <h3 class="h3">${cardSource.name}</h3>
-                <h4 class="h4 pop_subheader">${cardSource.type} - ${cardSource.breed}</h4>
-                <div class="pop_text">${cardSource.description}</div>
-                <ul class="pop_list">
-                    <li><span><b>Age:</b> ${cardSource.age}</span></li>
-                    <li><span><b>Inoculations:</b> ${cardSource.inoculations}</span></li>
-                    <li><span><b>Diseases:</b> ${cardSource.diseases}</span></li>
-                    <li><span><b>Parasites:</b> ${cardSource.parasites}</span></li>
-                </ul>
-            </div>`;          
-            popUpBg.append(card);
+        const card = document.createElement('div');
+        card.classList.add('pop_up_card');
+        card.innerHTML = `
+        <div class="close"></div>
+        <div class="pop_img"><img src="${cardSource.img}" alt="${cardSource.name}"></div>
+        <div class="pop_info">
+            <h3 class="h3">${cardSource.name}</h3>
+            <h4 class="h4 pop_subheader">${cardSource.type} - ${cardSource.breed}</h4>
+            <div class="pop_text">${cardSource.description}</div>
+            <ul class="pop_list">
+                <li><span><b>Age:</b> ${cardSource.age}</span></li>
+                <li><span><b>Inoculations:</b> ${cardSource.inoculations}</span></li>
+                <li><span><b>Diseases:</b> ${cardSource.diseases}</span></li>
+                <li><span><b>Parasites:</b> ${cardSource.parasites}</span></li>
+            </ul>
+        </div>`;          
+        popUpBg.append(card);
     }
     const popUpBg = document.querySelector('.pop_up_bg');
     let click = document.querySelectorAll('.click');
@@ -293,7 +290,6 @@ document.addEventListener("DOMContentLoaded", function(){
             document.body.classList.toggle('scroll_blocked');
             popUpBg.classList.toggle('hide');
             createPopUp();
-            
         }) 
     })
     function createNewClickEventMain(){
@@ -311,7 +307,6 @@ document.addEventListener("DOMContentLoaded", function(){
                 document.body.classList.toggle('scroll_blocked');
                 popUpBg.classList.toggle('hide');
                 createPopUp();
-                
             }) 
         })
     }
@@ -322,7 +317,6 @@ document.addEventListener("DOMContentLoaded", function(){
             popUpBg.innerHTML = '';
             popUpBg.classList.toggle('hide');
         }
-        
     })
 })
 
