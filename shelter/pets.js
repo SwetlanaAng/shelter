@@ -295,7 +295,7 @@ function createNewClickEvent(){
             popUpBg.style.top = `${document.documentElement.scrollTop}px`;
             document.body.classList.toggle('scroll_blocked');
             popUpBg.classList.toggle('hide');
-            createPopUp();
+            
         }) 
 })
 }
@@ -313,7 +313,7 @@ click.forEach((el)=>{
         popUpBg.style.top = `${document.documentElement.scrollTop}px`;
         document.body.classList.toggle('scroll_blocked');
         popUpBg.classList.toggle('hide');
-        createPopUp();
+        
     }) 
 })
 popUpBg.addEventListener('click', (event)=>{

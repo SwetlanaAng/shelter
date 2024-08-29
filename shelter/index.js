@@ -228,7 +228,7 @@ document.addEventListener("DOMContentLoaded", function(){
         arrPetsInWrapper.push(genCards(arrPets, arrShowCards));
         arrPetsInWrapper.splice(0, 1);
         putCardInEnd(numCards*2, numCards*3);
-        click = document.querySelectorAll('.click');
+        createNewClickEventMain();
         setTimeout(()=>{
             cardsWrapper.style.transitionDuration = '0.5s';
             cardsWrapper.style.left = `-${leftSide}px`;  
@@ -245,7 +245,7 @@ document.addEventListener("DOMContentLoaded", function(){
         arrPetsInWrapper.unshift(genCards(arrPets, arrShowCards));
         arrPetsInWrapper.splice(3, 1);
         putCardInBeginning(0, arrShowCards.length);
-        click = document.querySelectorAll('.click');
+        createNewClickEventMain();
         
         setTimeout(()=>{
             cardsWrapper.style.transitionDuration = '0.5s';
@@ -275,10 +275,8 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     const popUpBg = document.querySelector('.pop_up_bg');
     let click = document.querySelectorAll('.click');
-    
-    click.forEach((el)=>{
-        el.addEventListener('click', (event)=>{
-            const name = event.target.classList[1];
+    function clickEvent(event){
+        const name = event.target.classList[1];
             for(let i = 0; i<arrPets.length; i++){
                 if(arrPets[i].name === name){
                     createPopUp(i);
@@ -286,25 +284,19 @@ document.addEventListener("DOMContentLoaded", function(){
             }
             popUpBg.style.top = `${document.documentElement.scrollTop}px`;
             document.body.classList.toggle('scroll_blocked');
+            console.log('hi')
             popUpBg.classList.toggle('hide');
-            createPopUp();
-        }) 
+            
+    }
+    
+    click.forEach((el)=>{
+        el.addEventListener('click', clickEvent) 
     })
     function createNewClickEventMain(){
         click = document.querySelectorAll('.click');
+       
         click.forEach((el)=>{
-            el.addEventListener('click', (event)=>{
-                const name = event.target.classList[1];
-                for(let i = 0; i<arrPets.length; i++){
-                    if(arrPets[i].name === name){
-                        createPopUp(i);
-                    }
-                }
-                popUpBg.style.top = `${document.documentElement.scrollTop}px`;
-                document.body.classList.toggle('scroll_blocked');
-                popUpBg.classList.toggle('hide');
-                createPopUp();
-            }) 
+            el.addEventListener('click', clickEvent) 
         })
     }
     popUpBg.addEventListener('click', (event)=>{
