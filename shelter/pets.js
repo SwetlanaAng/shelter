@@ -317,7 +317,6 @@ click.forEach((el)=>{
     }) 
 })
 popUpBg.addEventListener('click', (event)=>{
-    console.log(event.target.className);
     if(event.target.className === 'pop_up_bg' || event.target.className === 'close'){
         document.body.classList.toggle('scroll_blocked');
         popUpBg.innerHTML = '';
