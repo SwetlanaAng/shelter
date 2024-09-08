@@ -107,11 +107,13 @@ document.addEventListener("DOMContentLoaded", function(){
     //burger
 
     function openCloseBurger(){
-        menuBackground.classList.toggle('hide');
+        if (document.documentElement.clientWidth < 768) {
+            menuBackground.classList.toggle('hide');
+            burger.classList.toggle('burger_rotate');
+            document.body.classList.toggle('scroll_blocked');
+            menu.classList.toggle('menu_show');
+        }
         
-        burger.classList.toggle('burger_rotate');
-        document.body.classList.toggle('scroll_blocked');
-        menu.classList.toggle('menu_show');
     }
     burger.addEventListener('click', openCloseBurger);
     menuBackground.addEventListener('click', openCloseBurger)

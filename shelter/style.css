@@ -668,7 +668,7 @@ li>.active_pets {
     height: 100vh;
     background:rgba(41, 41, 41, 0.6);
     position: absolute;
-    z-index: 7;
+    z-index: 5;
 }
 .scroll_blocked{
     overflow: hidden;
