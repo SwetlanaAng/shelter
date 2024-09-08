@@ -88,19 +88,16 @@ let arrPets = [
       "diseases": ["deafness", "blindness"],
       "parasites": ["lice", "fleas"]
     },
-  ]
+  ];
 document.addEventListener("DOMContentLoaded", function(){
     const burger = document.querySelector(".nav");
     const menu = document.querySelector(".menu");
     const menuBackground = document.querySelector(".menu_background");
     menuBackground.classList.add('hide');
-    const cardsWrapper = document.querySelector(".cards_wrapper"); //лента
-    const cardsWindow = document.querySelector(".cards_window"); // окошко
-    const width = window.getComputedStyle(cardsWindow).width;
+    const cardsWrapper = document.querySelector(".cards_wrapper");
     const arrowNext = document.querySelector(".arrow_next>.arrow");
     const arrowPrev = document.querySelector(".arrow_prev>.arrow");
     const ourFriendsContainer = document.querySelector(".our_friends_container");
-
     let arrShowCards = [];
     let arrPetsInWrapper = [];
 
@@ -113,12 +110,11 @@ document.addEventListener("DOMContentLoaded", function(){
             document.body.classList.toggle('scroll_blocked');
             menu.classList.toggle('menu_show');
         }
-        
     }
     burger.addEventListener('click', openCloseBurger);
     menuBackground.addEventListener('click', openCloseBurger)
     menu.addEventListener('click', (event)=>{
-        if(event.target.nodeName == 'A'){
+        if (event.target.nodeName == 'A') {
             openCloseBurger();
         }
     })
@@ -126,34 +122,34 @@ document.addEventListener("DOMContentLoaded", function(){
     //slider
     let numCards =0;
     let leftSide = 0;
-    function referNumCards(){
-        if(document.documentElement.clientWidth>=1231){
+    function referNumCards() {
+        if (document.documentElement.clientWidth >= 1231) {
             numCards = 3;
             leftSide = 1080;
-        }else if (document.documentElement.clientWidth<1231 && document.documentElement.clientWidth>767){
+        } else if (document.documentElement.clientWidth < 1231 && document.documentElement.clientWidth > 767) {
             numCards = 2;
             leftSide = 632;
-        }
-        else {
+        } else {
             numCards = 1;
-            leftSide = 282;}
+            leftSide = 282;
+        }
     }
     
     referNumCards();
-    initial(numCards, leftSide) ;
+    initial(numCards, leftSide);
      window.addEventListener('resize', () => {
             let oldNumCards = numCards;
             referNumCards();
-            if (oldNumCards!=numCards){
+            if (oldNumCards != numCards) {
                 cardsWrapper.innerHTML = '';
-                initial(numCards, leftSide) ;
+                initial(numCards, leftSide);
                 createNewClickEventMain();
             }
       }); 
      
-    function createArrShowCards(iC){
+    function createArrShowCards(iC) {
         arrShowCards = [];
-        for(let i = 0; i< iC; i++){
+        for (let i = 0; i < iC; i ++) {
             arrShowCards.push(arrPets[i]);
         }
     }
@@ -164,10 +160,10 @@ document.addEventListener("DOMContentLoaded", function(){
         arrPetsInWrapper = [genCards(arrPets, arrShowCards), arrShowCards, genCards(arrPets, arrShowCards)];
         putCardInEnd(0, arrPetsInWrapper.flat().length);
         let size = 1280;
-        if(imageCount ===2){
+        if (imageCount === 2) {
             size = 767;
         }
-        if(imageCount ===1){
+        if (imageCount === 1) {
             size = 319;
         }
         ourFriendsContainer.style.width = `${size}px`;
@@ -187,14 +183,14 @@ document.addEventListener("DOMContentLoaded", function(){
             return card;
     }
 
-    function putCardInEnd(from, to){
-        for(let i = from; i<to; i++){
+    function putCardInEnd(from, to) {
+        for (let i = from; i < to; i ++) {
             cardsWrapper.append(createCard(i));
         } 
     }
 
-    function putCardInBeginning(from, to){
-        for(let i = from; i<to; i++){
+    function putCardInBeginning(from, to) {
+        for (let i = from; i < to; i ++) {
             cardsWrapper.prepend(createCard(i));
         } 
     }
@@ -204,52 +200,51 @@ document.addEventListener("DOMContentLoaded", function(){
         let i = 0;
         let flag = false;
         arrInitial = arrInitial.sort(() => Math.random() - 0.5);
-        while (genedArr.length<arrMiddleCards.length){
-            for(let j = 0; j<arrMiddleCards.length; j++){
-                if(arrInitial[i]===arrMiddleCards[j]){
-                    i++;
+        while (genedArr.length < arrMiddleCards.length) {
+            for (let j = 0; j < arrMiddleCards.length; j ++) {
+                if (arrInitial[i] === arrMiddleCards[j]) {
+                    i ++;
                     flag = false;
                     break; 
-                }else flag = true;  
+                } else flag = true;  
             }
-            if(flag ===true){
+            if (flag === true) {
                 genedArr.push(arrInitial[i]);
-                i++;
+                i ++;
             }  
         }
         return genedArr;
       }
 
-      arrowNext.addEventListener('click', ()=>{
+      arrowNext.addEventListener('click', () => {
         cardsWrapper.style.transitionDuration = '0s';
-        for(let i = 0; i<arrShowCards.length; i++){
+        for (let i = 0; i < arrShowCards.length; i ++) {
             cardsWrapper.children[0].remove();
         }
         cardsWrapper.style.left = '0px';
         arrShowCards = arrPetsInWrapper[2];
         arrPetsInWrapper.push(genCards(arrPets, arrShowCards));
         arrPetsInWrapper.splice(0, 1);
-        putCardInEnd(numCards*2, numCards*3);
+        putCardInEnd(numCards * 2, numCards * 3);
         createNewClickEventMain();
-        setTimeout(()=>{
+        setTimeout(() => {
             cardsWrapper.style.transitionDuration = '0.5s';
             cardsWrapper.style.left = `-${leftSide}px`;  
         }, 0);
       })
 
-      arrowPrev.addEventListener('click', ()=>{
+      arrowPrev.addEventListener('click', () => {
         cardsWrapper.style.transitionDuration = '0s';
-        for(let i = 0; i<arrShowCards.length; i++){
-            cardsWrapper.children[cardsWrapper.children.length-1].remove();
+        for (let i = 0; i < arrShowCards.length; i ++) {
+            cardsWrapper.children[cardsWrapper.children.length - 1].remove();
         }
-        cardsWrapper.style.left = `-${leftSide*2}px`;
+        cardsWrapper.style.left = `-${leftSide * 2}px`;
         arrShowCards = arrPetsInWrapper[0];
         arrPetsInWrapper.unshift(genCards(arrPets, arrShowCards));
         arrPetsInWrapper.splice(3, 1);
         putCardInBeginning(0, arrShowCards.length);
         createNewClickEventMain();
-        
-        setTimeout(()=>{
+        setTimeout(() => {
             cardsWrapper.style.transitionDuration = '0.5s';
             cardsWrapper.style.left = `-${leftSide}px`;
         }, 0);
@@ -279,29 +274,27 @@ document.addEventListener("DOMContentLoaded", function(){
     let click = document.querySelectorAll('.click');
     function clickEvent(event){
         const name = event.target.classList[1];
-            for(let i = 0; i<arrPets.length; i++){
+            for (let i = 0; i < arrPets.length; i ++) {
                 if(arrPets[i].name === name){
                     createPopUp(i);
                 }
             }
             popUpBg.style.top = `${document.documentElement.scrollTop}px`;
             document.body.classList.toggle('scroll_blocked');
-            popUpBg.classList.toggle('hide');
-            
+            popUpBg.classList.toggle('hide'); 
     }
     
-    click.forEach((el)=>{
+    click.forEach((el) => {
         el.addEventListener('click', clickEvent) 
     })
     function createNewClickEventMain(){
         click = document.querySelectorAll('.click');
-       
-        click.forEach((el)=>{
+        click.forEach((el) => {
             el.addEventListener('click', clickEvent) 
         })
     }
-    popUpBg.addEventListener('click', (event)=>{
-        if(event.target.className === 'pop_up_bg' || event.target.className === 'close'){
+    popUpBg.addEventListener('click', (event) => {
+        if (event.target.className === 'pop_up_bg' || event.target.className === 'close') {
             document.body.classList.toggle('scroll_blocked');
             popUpBg.innerHTML = '';
             popUpBg.classList.toggle('hide');
