@@ -283,7 +283,7 @@ li>.active_pets {
     width: 270px;
     height: 434px;
     position: absolute;
-    z-index: 3;
+    z-index: 2;
 }
 .card:hover .light_button{
     background-color: #F1CDB3;
@@ -668,7 +668,7 @@ li>.active_pets {
     height: 100vh;
     background:rgba(41, 41, 41, 0.6);
     position: absolute;
-    z-index: 2;
+    z-index: 5;
 }
 .scroll_blocked{
     overflow: hidden;
@@ -682,7 +682,7 @@ li>.active_pets {
     display: flex;
     justify-content: center;
     align-items: center;
-    z-index: 3;
+    z-index: 10;
     transition: all .6s ease-in-out;
 }
 .menu_show{

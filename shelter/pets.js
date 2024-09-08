@@ -6,11 +6,13 @@ document.addEventListener("DOMContentLoaded", function(){
     menuBackground.classList.add('hide');
 
     function openCloseBurger(){
-        menuBackground.classList.toggle('hide');
+        if (document.documentElement.clientWidth < 768) {
+            menuBackground.classList.toggle('hide');
+            burger.classList.toggle('burger_rotate');
+            document.body.classList.toggle('scroll_blocked');
+            menu.classList.toggle('menu_show');
+        }
         
-        burger.classList.toggle('burger_rotate');
-        document.body.classList.toggle('scroll_blocked');
-        menu.classList.toggle('menu_show');
     }
     burger.addEventListener('click', openCloseBurger);
     menuBackground.addEventListener('click', openCloseBurger)
@@ -285,17 +287,15 @@ function createNewClickEvent(){
 
     click.forEach((el)=>{
         el.addEventListener('click', (event)=>{
-            
-            const name = event.target.id;
-            for(let i = 0; i<arrPets.length; i++){
-                if(arrPets[i].name === name){
-                    createPopUp(i);
+                const name = event.target.id;
+                for(let i = 0; i<arrPets.length; i++){
+                    if(arrPets[i].name === name){
+                        createPopUp(i);
+                    }
                 }
-            }
-            popUpBg.style.top = `${document.documentElement.scrollTop}px`;
-            document.body.classList.toggle('scroll_blocked');
-            popUpBg.classList.toggle('hide');
-            
+                popUpBg.style.top = `${document.documentElement.scrollTop}px`;
+                document.body.classList.toggle('scroll_blocked');
+                popUpBg.classList.toggle('hide');
         }) 
 })
 }
