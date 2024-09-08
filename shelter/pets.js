@@ -285,17 +285,15 @@ function createNewClickEvent(){
 
     click.forEach((el)=>{
         el.addEventListener('click', (event)=>{
-            
-            const name = event.target.id;
-            for(let i = 0; i<arrPets.length; i++){
-                if(arrPets[i].name === name){
-                    createPopUp(i);
+                const name = event.target.id;
+                for(let i = 0; i<arrPets.length; i++){
+                    if(arrPets[i].name === name){
+                        createPopUp(i);
+                    }
                 }
-            }
-            popUpBg.style.top = `${document.documentElement.scrollTop}px`;
-            document.body.classList.toggle('scroll_blocked');
-            popUpBg.classList.toggle('hide');
-            
+                popUpBg.style.top = `${document.documentElement.scrollTop}px`;
+                document.body.classList.toggle('scroll_blocked');
+                popUpBg.classList.toggle('hide');
         }) 
 })
 }
