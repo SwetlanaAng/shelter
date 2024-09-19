@@ -45,7 +45,10 @@ document.addEventListener("DOMContentLoaded", function(){
     current = document.querySelector('.current'),
     progress = document.querySelector('.progress'),
     volume = document.querySelector('.volume'),
+    inputVolume = document.querySelector('#volume_range'),
+    volumeRange = document.querySelector('.volume_range'),
     order = document.querySelector('.order'),
+    mute = document.querySelector('.mute'),
     inputProgress = document.querySelector('#progress');
     inputProgress.value = 0;
     const audio = new Audio(songsData[0].srcSong);
@@ -135,12 +138,26 @@ document.addEventListener("DOMContentLoaded", function(){
         }
         
     })
+    volume.addEventListener('click', () => {
+        volumeRange.classList.toggle('hide');
+
+    })
+    mute.addEventListener('click', () => {
+        audio.volume = 0;
+        inputVolume.value = 0;
+    })
     
-    audio.addEventListener("loadedmetadata", () => inputProgress.max = audio.duration)
+    audio.addEventListener("loadedmetadata", () => {
+        inputProgress.max = audio.duration;
+        inputVolume.max = audio.volume;
+    })
     
     inputProgress.addEventListener("change", () => {
         audio.currentTime = inputProgress.value;
         currentT = audio.currentTime;
+    })
+    inputVolume.addEventListener("change", () => {
+        audio.volume = inputVolume.value;
     })
     
     audio.addEventListener('timeupdate', () => {
