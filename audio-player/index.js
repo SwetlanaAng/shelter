@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let index = 0,
         play = document.querySelector('.play_pause'),
         replay = true,
+        currentSong = "Don't hurt Yourself",
         currentT = 0;
     const imgPart = document.querySelector('.img_part'),
         prev = document.querySelector('.prev'),
@@ -47,7 +48,6 @@ document.addEventListener("DOMContentLoaded", function() {
         inputVolume = document.querySelector('#volume_range'),
         volumeRange = document.querySelector('.volume_range'),
         order = document.querySelector('.order'),
-        mute = document.querySelector('.mute'),
         inputProgress = document.querySelector('#progress');
     inputProgress.value = 0;
     current.innerHTML = "0:00";
@@ -75,7 +75,6 @@ document.addEventListener("DOMContentLoaded", function() {
     };
 
     const newSong = (i) => {
-        if (!replay) songsData = songsData.sort(() => Math.random() - 0.5);
         const songSource = songsData[i];
         imgPart.innerHTML = '';
         imgPart.innerHTML = `<img src="${songSource.src}" alt="${songSource.alt}">`;
@@ -86,34 +85,45 @@ document.addEventListener("DOMContentLoaded", function() {
         mainBG.innerHTML = `<img src="${songSource.src}" alt="${songSource.alt}">`;
     };
     
-    const nextSong = () => {
-        if (index < songsData.length - 1) {
-            index += 1;
-        } else index = 0;
+    const launchSongByIndex = (i) => {
         currentT = 0;
-        newSong(index);
-        playSong(songsData[index].srcSong);
+        currentSong = songsData[i].song;
+        newSong(i);
+        playSong(songsData[i].srcSong);
+    }
+    const playNextSong = () => {
+        if (index < songsData.length - 1 && !replay) {
+            songsData = songsData.sort(() => Math.random() - 0.5);
+            index = 0;
+        } else if (index < songsData.length - 1){
+            index += 1; 
+        } else index = 0;
+        if (currentSong === songsData[index].song) index ++;
+        launchSongByIndex(index);
     };
     audio.addEventListener('loadedmetadata',() => length.innerHTML = `${getTime(audio.duration)}` );
     play.addEventListener("click", () => {
         if (currentT != 0) currentT = audio.currentTime;
         else currentT = 0;   
         if (audio.paused) {
+            currentSong = songsData[index].song;
             playSong(songsData[index].srcSong);
         } else {
             currentT = audio.currentTime;
             pauseSong();
         }
     });
-    next.addEventListener("click", nextSong);
+    next.addEventListener("click", playNextSong);
     
     prev.addEventListener("click", () => {
         if (index > 0) {
             index -= 1;
+        } else if (!replay){
+            songsData = songsData.sort(() => Math.random() - 0.5);
+            index = songsData.length - 1;
         } else index = songsData.length - 1;
-        currentT = 0;
-        newSong(index);
-        playSong(songsData[index].srcSong);
+        if (currentSong === songsData[index].song) index --;
+        launchSongByIndex(index);
     });
     order.addEventListener('click', () => {
         if (replay) {
@@ -129,10 +139,7 @@ document.addEventListener("DOMContentLoaded", function() {
     volume.addEventListener('click', () => {
         volumeRange.classList.toggle('hide');
     });
-    mute.addEventListener('click', () => {
-        audio.volume = 0;
-        inputVolume.value = 0;
-    });
+    
     
     audio.addEventListener("loadedmetadata", () => {
         inputProgress.max = audio.duration;
@@ -150,6 +157,6 @@ document.addEventListener("DOMContentLoaded", function() {
     audio.addEventListener('timeupdate', () => {
         if (Math.abs(audio.currentTime-inputProgress.value) <= 2) inputProgress.value = audio.currentTime;
         current.innerHTML = getTime(audio.currentTime);
-        if (audio.currentTime === audio.duration) nextSong();
+        if (audio.currentTime === audio.duration) playNextSong();
     });
 })

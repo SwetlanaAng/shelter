@@ -55,6 +55,7 @@ body {
     justify-content: center;
     color:beige;
     margin-top: 10px;
+    gap: 5px;
 }
 .prev>img, .next>img, .order>img, .volume>img, .volume_range>img{
     width: 30px;
@@ -69,9 +70,14 @@ body {
 .order, .volume{
     margin: 5px 10px 0;
 }
+.volume {
+    position: relative;
+}
 .volume_range{
     position: absolute;
-    left: 65px;
+    transform: rotate(-90deg);
+    top: -38px;
+    left: -18px;
 }
 .play {
     background-image: url("./img/play.png");
@@ -127,8 +133,8 @@ body {
 }
 .volume_range>input[type=range]{
     position: relative;
-    bottom: 12px;
-    width: 40%;
+    bottom: -5px;
+    width: 144%;
 }
   input[type=range] {
     -webkit-appearance: none;
