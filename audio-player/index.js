@@ -1,5 +1,5 @@
 'use strict';
-let songsData = [
+let songsDataOriginal = [
     {
         "src": "./img/lemonade.png",
         "alt": "singer photo",
@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
     let index = 0,
         play = document.querySelector('.play_pause'),
         replay = true,
+        songsData = JSON.parse(JSON.stringify(songsDataOriginal)),
         currentSong = "Don't hurt Yourself",
         currentT = 0;
     const imgPart = document.querySelector('.img_part'),
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function() {
     inputProgress.value = 0;
     current.innerHTML = "0:00";
 
-    const audio = new Audio(songsData[0].srcSong);
+    const audio = new Audio(songsDataOriginal[0].srcSong);
 
     const getTime = (seconds) => {
         if (Math.round(seconds % 60) < 10) return `${Math.floor(seconds / 60)}:0${Math.round(seconds % 60)}`;
@@ -85,29 +86,45 @@ document.addEventListener("DOMContentLoaded", function() {
         mainBG.innerHTML = `<img src="${songSource.src}" alt="${songSource.alt}">`;
     };
     
-    const launchSongByIndex = (i) => {
+    const launchSongByIndex = (arr, i) => {
         currentT = 0;
-        currentSong = songsData[i].song;
+        currentSong = arr[i].song;
         newSong(i);
-        playSong(songsData[i].srcSong);
+        playSong(arr[i].srcSong);
+    }
+    const ifNotReplayed = () => {
+        if (index === songsData.length - 1) {
+                songsData = songsData.sort(() => Math.random() - 0.5);
+                index = 0;
+            }  else if (index < songsData.length - 1){
+                index += 1; 
+            } else index = 0;
+         if (currentSong === songsData[index].song) index ++; 
     }
     const playNextSong = () => {
-        if (index < songsData.length - 1 && !replay) {
-            songsData = songsData.sort(() => Math.random() - 0.5);
-            index = 0;
-        } else if (index < songsData.length - 1){
-            index += 1; 
-        } else index = 0;
-        if (currentSong === songsData[index].song) index ++;
-        launchSongByIndex(index);
+        if(!replay) {
+            ifNotReplayed()  
+            launchSongByIndex(songsData, index); 
+        } else {
+            if(index < songsDataOriginal.length - 1) index++
+            else index = 0;
+            launchSongByIndex(songsDataOriginal, index);
+        }
+        
     };
     audio.addEventListener('loadedmetadata',() => length.innerHTML = `${getTime(audio.duration)}` );
     play.addEventListener("click", () => {
         if (currentT != 0) currentT = audio.currentTime;
         else currentT = 0;   
         if (audio.paused) {
-            currentSong = songsData[index].song;
-            playSong(songsData[index].srcSong);
+            if(replay){
+                currentSong = songsDataOriginal[index].song;
+                playSong(songsDataOriginal[index].srcSong);
+            } else {
+                currentSong = songsData[index].song;
+                playSong(songsData[index].srcSong);
+            }
+            
         } else {
             currentT = audio.currentTime;
             pauseSong();
@@ -116,17 +133,18 @@ document.addEventListener("DOMContentLoaded", function() {
     next.addEventListener("click", playNextSong);
     
     prev.addEventListener("click", () => {
-        if (index > 0) {
+        if(replay){
+           if (index > 0) {
             index -= 1;
-        } else if (!replay){
-            songsData = songsData.sort(() => Math.random() - 0.5);
-            index = songsData.length - 1;
-        } else index = songsData.length - 1;
-        if (currentSong === songsData[index].song) index --;
-        launchSongByIndex(index);
-    });
+            } else index = songsDataOriginal.length - 1;
+            launchSongByIndex(songsDataOriginal, index);
+        }else {
+            ifNotReplayed();
+            launchSongByIndex(songsData, index);   
+        }});
     order.addEventListener('click', () => {
         if (replay) {
+            
             replay = false;
             order.innerHTML = ''; 
             order.innerHTML = `<img src="./img/344685_audio_shuffle_sound_video_arrow_icon.png" alt="shuffle">`; 
