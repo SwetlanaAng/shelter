@@ -33,13 +33,13 @@ let songsDataOriginal = [
 document.addEventListener("DOMContentLoaded", function() {
     
     let index = 0,
-        play = document.querySelector('.play_pause'),
         replay = true,
         songsData = JSON.parse(JSON.stringify(songsDataOriginal)),
         currentSong = "Don't hurt Yourself",
         currentT = 0;
     const imgPart = document.querySelector('.img_part'),
         prev = document.querySelector('.prev'),
+        play = document.querySelector('.play_pause'),
         next = document.querySelector('.next'),
         mainBG = document.querySelector('.main_bg'),
         info = document.querySelector('.song_info'),
@@ -124,7 +124,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 currentSong = songsData[index].song;
                 playSong(songsData[index].srcSong);
             }
-            
         } else {
             currentT = audio.currentTime;
             pauseSong();
@@ -144,7 +143,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }});
     order.addEventListener('click', () => {
         if (replay) {
-            
             replay = false;
             order.innerHTML = ''; 
             order.innerHTML = `<img src="./img/344685_audio_shuffle_sound_video_arrow_icon.png" alt="shuffle">`; 
@@ -157,7 +155,6 @@ document.addEventListener("DOMContentLoaded", function() {
     volume.addEventListener('click', () => {
         volumeRange.classList.toggle('hide');
     });
-    
     
     audio.addEventListener("loadedmetadata", () => {
         inputProgress.max = audio.duration;
