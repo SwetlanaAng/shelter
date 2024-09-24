@@ -5,15 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Image-gallery</title>
     <link rel="stylesheet" href="./style.css">
+    <script src="https://kit.fontawesome.com/bb6b9ba3f8.js" crossorigin="anonymous"></script>
 </head>
-<body> 
+<body>
+    <div class="wrapper">
+        <div class="modal_bg hide">
+        <div class="modal_image"></div>
+    </div>
+    </div>
     <header>
-        <div class="logo">
-            <div class="logo_img"></div>
-            <div class="logo_text">Unsplash API</div>
+        <div class="header_container">
+            <div class="logo">
+                <div class="logo_img"><i class="fa-solid fa-camera"></i></div>
+                <div class="logo_text">Unsplash API</div>
+            </div>
+            <div class="search"><input type="search" name="search" id="s" placeholder="search"></div>
+            <div class="cross_loupe"><img src="./img/694985.png" alt="loupe"></div>
         </div>
-        <div class="search"><input type="search" name="search" id="s" placeholder="search"></div>
-        <div class="cross_loupe"></div>
         <div class="horizontal"></div>
     </header>
     <main>
@@ -34,6 +42,6 @@
         </div>
     </footer>
     hello world!
-    <script src="./index.js"></script>
+    <script src="./main.js"></script>
 </body>
 </html>
