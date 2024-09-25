@@ -38,8 +38,10 @@ body {
 .modal_cross{
     margin-right: 5px;
 }
-.modal_image>img{
-    width: 40vw;
+.modal_image>.i>img{
+    width: 35vw;
+    max-height: 90vh;
+    object-fit: fill;
 }
 .modal_info {
     display: flex;
@@ -79,12 +81,17 @@ body {
 .search>input{
     width: 25vw;
     height: 3.5vh;
+    border: none;
     border-radius: 15px;
     padding-left: 8px;
+    outline: none;
+}
+.search>input:hover{
+    background-color:rgb(249, 231, 159)
 }
 .cross_loupe{
     position: absolute;
-    right: 1.5%;
+    right: 1%;
     top: 14px;
 }
 .cross_loupe>img{
@@ -122,7 +129,6 @@ body {
     justify-content: space-around;
     align-items: center;
     gap: 50px;
-    
 }
 .logo>a>img, .github_link>img{
     filter: invert(42%) sepia(93%) saturate(62%) hue-rotate(87deg) brightness(100%) contrast(119%);
@@ -140,4 +146,9 @@ body {
 }
 .year{
     color: rgba(76, 110, 99, 0.796);
+}
+@media (max-width: 1930px) and (min-width: 1154px){
+    .image {
+        width: 18%; 
+    }
 }
