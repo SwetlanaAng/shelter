@@ -15,6 +15,12 @@ document.addEventListener("DOMContentLoaded", function(){
       })
     })
   }
+  const showRequestedImgs = () => {
+    container.innerHTML = '';
+      const url = `https://api.unsplash.com/search/photos?query=${input.value}&per_page=30&client_id=kIfrDzIphvPoB_0dfSwSdjpJWmj1aSRA3Jp-0n-sDZo`;
+      getData(url);
+      input.focus();
+  }
   const showModal = (id) => {
     arrData.forEach((item) => {
       if(item.id === id){
@@ -62,16 +68,10 @@ document.addEventListener("DOMContentLoaded", function(){
     }
   getData(url);
 
-  input.addEventListener('input', () => {
-    if (cross.innerHTML === '' & input.value === '') cross.innerHTML = '<img src="./img/694985.png" alt="loupe"></img>';
-    else cross.innerHTML = '';
-  })
-
+  cross.addEventListener('click', showRequestedImgs)
   input.addEventListener('keypress', (e) => {
     if (e.keyCode === 13){
-      container.innerHTML = '';
-      const url = `https://api.unsplash.com/search/photos?query=${input.value}&per_page=30&client_id=kIfrDzIphvPoB_0dfSwSdjpJWmj1aSRA3Jp-0n-sDZo`;
-      getData(url);
+      showRequestedImgs();
     }
   })
 })
