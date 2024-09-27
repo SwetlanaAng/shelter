@@ -83,7 +83,7 @@ body {
     height: 3.5vh;
     border: none;
     border-radius: 15px;
-    padding-left: 8px;
+    padding-left: 2vw;
     outline: none;
 }
 .search>input:hover{
@@ -150,5 +150,23 @@ body {
 @media (max-width: 1930px) and (min-width: 1154px){
     .image {
         width: 18%; 
+    }
+}
+@media (max-width: 1000px) and (min-width:768px){
+    .cross_loupe {
+        right: 23%;
+    }
+    .search>input{
+        padding-left: 3vw;
+    }
+}
+@media (max-width: 1500px) and (min-width:1001px){
+    .cross_loupe {
+        right: 24%;
+    }
+}
+@media (min-width:1501px){
+    .cross_loupe {
+        right: 24.5%;
     }
 }
