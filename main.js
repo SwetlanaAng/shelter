@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function(){
             cell.classList.add('cell');
             cell.classList.add(`c${i}${j}`);
             if(item[j] != 0) cell.innerHTML = `${item[j]}`;
-            if(item[j] < 0) cell.innerHTML = '<img width="19px" src="./img/explosion_5512962.png" alt="explosion">';////
+            if(item[j] < 0) cell.innerHTML = '<img src="./img/explosion_5512962.png" alt="explosion">';////
             field.append(cell);
 
             const hideCell = document.createElement('div');
@@ -203,7 +203,7 @@ document.addEventListener("DOMContentLoaded", function(){
             clickedCell.innerHTML = '';
         }else {
             const clickedCell = document.querySelector(`#${e.target.id}`);
-            clickedCell.innerHTML ='<img width="19px" src="./img/map_13899955.png" alt="flag">'
+            clickedCell.innerHTML ='<img src="./img/map_13899955.png" alt="flag" style="width: 5vw">'
         }
         
     }else {
@@ -225,7 +225,7 @@ document.addEventListener("DOMContentLoaded", function(){
             const cells = document.querySelectorAll('.cell');
             let ij = e.target.id.slice(1);
             findArea(+ij[0], +ij[1]);
-        }else if (underCell.innerHTML ==='<img width="19px" src="./img/explosion_5512962.png" alt="explosion">'){
+        }else if (underCell.innerHTML ==='<img src="./img/explosion_5512962.png" alt="explosion">'){
             hidingCells.forEach((item) => {
                 item.style.backgroundColor = 'rgba(255, 227, 194, 0)';
             });

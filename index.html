@@ -7,22 +7,28 @@
     <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <!-- <header>
-        <div class="timer">00:00:00</div>
+    <header>
+        <div class="timer">
+            <div class="hours">00:</div>
+            <div class="minutes">00:</div>
+            <div class="seconds">00</div>
+        </div>
         <div class="btn score">score</div>
-    </header> -->
+        <div class="score_info hide">
+        </div>
+    </header>
     <main>
         <div class="main_container">
-        <div class="playing_field">
-        </div>
-       <div class="hiding_field">
-        </div>
-        <div class="buttons">
-            <div class="btn start_over">start over</div>
-            <div class="finish hide"></div>
-            <div class="btn pause">pause</div>
-            <div class="btn rules">rules</div>
-        </div>
+            <div class="playing_field">
+            </div>
+            <div class="hiding_field">
+            </div>
+            <div class="buttons">
+                <div class="btn start_over">start over</div>
+                <div class="finish hide"></div>
+                <div class="btn pause">pause</div>
+                <div class="btn rules">rules</div>
+            </div>
         </div>
         <div class="rules_text hide">
             <p>На поле размером 9x9 (в данной реализации) в некоторых ячейках спрятано 11 мин. Цель игры - найти все мины на поле и пометить такие ячейки флажком.</p>
