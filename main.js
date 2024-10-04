@@ -47,6 +47,8 @@ document.addEventListener("DOMContentLoaded", function(){
     let fail = false;
     let storageKey = 0;
     let pauseTimer = false;
+    let closedCells = 81;
+    let timerInterval;
  const matrix = createNewMatrix();
  
  const field = document.querySelector('.playing_field'),
@@ -80,19 +82,36 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     })
  }
+ const checkWinning = (point)=>{
+    if (point === 11){
+        finish.classList.toggle('hide');
+        fail = true;
+            finish.innerHTML = `Congratulations! You have won! <br> time : ${Date.parse(new Date()) - start}
+            <br> steps: ${counter}`;
+            setDataToLocalStorage();
+            //pauseFunc();
+    }
+ }
  const addZero = (number) =>{
     if(number <10) return '0'+number;
     return number;
  }
- const setTimer = () =>{
+ const setTimer = (timeArg) =>{
     function updateTimer(){
-        const time = getTime();
+        let time;
+        
+        if(timeArg)  time = getTime(timeArg);
+        else time = getTime();
         hours.innerHTML = `${addZero(time.hours)}:`;
         minutes.innerHTML = `${addZero(time.minutes)}:`;
         seconds.innerHTML = `${addZero(time.seconds)}`;
-        if (fail === true) clearInterval(timerInterval);
+        if (fail === true){
+            clearInterval(timerInterval);
+        } 
     }
-    const timerInterval = setInterval(updateTimer, 1000);
+    if(!timeArg) timerInterval = setInterval(updateTimer, 1000);
+    
+    
  }
  const getTime = (timeArg) =>{
     let time = Date.parse(new Date()) - start;
@@ -132,6 +151,8 @@ document.addEventListener("DOMContentLoaded", function(){
             const hidingCell = document.querySelector(`#c${queue[0][0]}${queue[0][1]}`);
             if( hidingCell.style.backgroundColor !== 'rgba(255, 227, 194, 0)'){
                 hidingCell.style.backgroundColor = 'rgba(255, 227, 194, 0)';
+                closedCells--;
+                checkWinning(closedCells);
                 if(matrix[queue[0][0]][queue[0][1]] === 0) {
                     putInQ(queue, queue[0][0], queue[0][1]);
                 } 
@@ -147,12 +168,22 @@ document.addEventListener("DOMContentLoaded", function(){
     formQ(queue); 
     
  }
+ const pauseFunc = ()=>{
+        pauseTimer = true;
+        hidingField.style.pointerEvents = 'none';
+        hidingField.style.cursor = 'not-allowed';
+        start = start + 1000;
+        pauseInterval = setInterval(()=>{
+        start = start + 1000;
+    }, 1000);
+ }
  const setDataToLocalStorage = () => {
     myStorage = window.localStorage;
     const duration = Date.parse(new Date()) - start;
     console.log(duration);
     const results = {'duration': duration,
-        'steps': counter
+        'steps': counter,
+        'victory': fail
     };
             if(Object.keys(myStorage).length>9){
                 let keys = Object.keys(myStorage);
@@ -185,13 +216,19 @@ document.addEventListener("DOMContentLoaded", function(){
     if(e.target.id){
         const clickedCell = document.querySelector(`#${e.target.id}`);
         const underCell = document.querySelector(`.${e.target.id}`);
-        if (Number(underCell.innerHTML) > 0 && underCell.innerHTML != '' ) clickedCell.style.backgroundColor = 'rgba(255, 227, 194, 0)';
+        if (Number(underCell.innerHTML) > 0 && underCell.innerHTML != '' ){
+            clickedCell.style.backgroundColor = 'rgba(255, 227, 194, 0)';
+            closedCells--;
+            checkWinning(closedCells);
+        } 
         else if (underCell.innerHTML === ''){
             const cells = document.querySelectorAll('.cell');
             let ij = e.target.id.slice(1);
             findArea(+ij[0], +ij[1]);
         }else if (underCell.innerHTML ==='<img width="19px" src="./img/explosion_5512962.png" alt="explosion">'){
-            hidingCells.forEach((item) => {item.style.backgroundColor = 'rgba(255, 227, 194, 0)';});
+            hidingCells.forEach((item) => {
+                item.style.backgroundColor = 'rgba(255, 227, 194, 0)';
+            });
             fail = true;
             finish.classList.toggle('hide');
             finish.innerHTML = `sorry! You have lost! <br> time : ${Date.parse(new Date()) - start}
@@ -215,13 +252,7 @@ document.addEventListener("DOMContentLoaded", function(){
  pause.addEventListener('click', ()=>{
    
     if(!pauseTimer){
-        pauseTimer = true;
-        hidingField.style.pointerEvents = 'none';
-        hidingField.style.cursor = 'not-allowed';
-        start = start + 1000;
-        pauseInterval = setInterval(()=>{
-        start = start + 1000;
-    }, 1000);
+        pauseFunc()
     } else {
         pauseTimer = false;
         hidingField.style.pointerEvents = 'auto';
@@ -259,7 +290,8 @@ document.addEventListener("DOMContentLoaded", function(){
         element.classList.add('game_info');
         element.innerHTML = `<h4>game ${gameNumber}</h4>
         <span>продолжительность игры: ${addZero(timeData.hours)}:${addZero(timeData.minutes)}:${addZero(timeData.seconds)} </span>
-        <span>steps: ${JSON.parse(myStorage.getItem(`${item}`)).steps}</span></div>`;
+        <span>steps: ${JSON.parse(myStorage.getItem(`${item}`)).steps}</span>
+        <span>outcome of the game: ${JSON.parse(myStorage.getItem(`${item}`)).victory ? 'victory' : 'defeat'}</span></div>`;
         gameNumber++;
         scoreInfo.append(element);
     })
