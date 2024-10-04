@@ -45,14 +45,22 @@ document.addEventListener("DOMContentLoaded", function(){
     let counter = 0;
     let start;
     let fail = false;
-    let storageVolume = 0;
+    let storageKey = 0;
+    let pauseTimer = false;
  const matrix = createNewMatrix();
  
  const field = document.querySelector('.playing_field'),
  hidingField= document.querySelector('.hiding_field'),
  hours = document.querySelector('.hours'),
  minutes = document.querySelector('.minutes'),
- seconds = document.querySelector('.seconds');
+ seconds = document.querySelector('.seconds'),
+ finish = document.querySelector('.finish'),
+ startOver = document.querySelector('.start_over'),
+ pause = document.querySelector('.pause'),
+ rules = document.querySelector('.rules'),
+ rulesText = document.querySelector('.rules_text'),
+ score = document.querySelector('.score'),
+ scoreInfo = document.querySelector('.score_info');
  const renderNewField = (arr) =>{
     arr.forEach((item, i) => {
         if(i!=0&&i!=10)
@@ -86,9 +94,18 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     const timerInterval = setInterval(updateTimer, 1000);
  }
- const getTime = () =>{
-    const time = Date.parse(new Date()) - start,
-    seconds = Math.floor((time/1000)%60),
+ const getTime = (timeArg) =>{
+    let time = Date.parse(new Date()) - start;
+    if(timeArg) {time =  timeArg}
+    if(timeArg === 0){
+        return {
+            'time': 0,
+            'seconds': 00,
+            'minutes': 00,
+            'hours': 00
+        };
+    }
+    const seconds = Math.floor((time/1000)%60),
     minutes = Math.floor((time/1000/60)%60),
     hours = Math.floor((time/(1000*60*60))%60);
     return {
@@ -112,7 +129,6 @@ document.addEventListener("DOMContentLoaded", function(){
  const formQ = (queue) =>{
     while(queue.length!=0){
         if(queue[0][0]<10 && queue[0][0]>0 && queue[0][1]<10 && queue[0][1]>0){
-            console.log([queue[0][0], queue[0][1]])
             const hidingCell = document.querySelector(`#c${queue[0][0]}${queue[0][1]}`);
             if( hidingCell.style.backgroundColor !== 'rgba(255, 227, 194, 0)'){
                 hidingCell.style.backgroundColor = 'rgba(255, 227, 194, 0)';
@@ -131,12 +147,37 @@ document.addEventListener("DOMContentLoaded", function(){
     formQ(queue); 
     
  }
- 
+ const setDataToLocalStorage = () => {
+    myStorage = window.localStorage;
+    const duration = Date.parse(new Date()) - start;
+    console.log(duration);
+    const results = {'duration': duration,
+        'steps': counter
+    }
+            if(Object.keys(myStorage).length>9){
+                let keys = Object.keys(myStorage);
+                console.log(keys);
+                myStorage.removeItem(`${Math.min(...keys)}`);
+;            }
+            storageKey = Date.parse(new Date());
+            myStorage.setItem(`${storageKey}`, JSON.stringify(results))
+ }
+ //localStorage.clear();
  renderNewField(matrix);
  console.log(matrix)
  const hidingCells = document.querySelectorAll('.hiding_cell');
  hidingField.addEventListener('click', (e) => {
-    if(counter ===0){
+    if(e.shiftKey){
+        if(e.target.alt === "flag"){
+            const clickedCell = document.querySelector(`#${e.target.parentElement.id}`);
+            clickedCell.innerHTML = '';
+        }else {
+            const clickedCell = document.querySelector(`#${e.target.id}`);
+            clickedCell.innerHTML ='<img width="19px" src="./img/map_13899955.png" alt="flag">'
+        }
+        
+    }else {
+         if(counter ===0){
         start = Date.parse(new Date());
         setTimer();
     } 
@@ -153,20 +194,70 @@ document.addEventListener("DOMContentLoaded", function(){
         }else if (underCell.innerHTML ==='<img width="19px" src="./img/explosion_5512962.png" alt="explosion">'){
             hidingCells.forEach((item) => {item.style.backgroundColor = 'rgba(255, 227, 194, 0)';});
             fail = true;
-            myStorage = window.localStorage;
-            if(Object.keys(myStorage).length<5){
-                storageVolume = Object.keys(myStorage).length
-            }else storageVolume = 0;
-            
-            const duration = Date.parse(new Date()) - start;
-            const results = {'duration': duration,
-                'steps': counter
-            }
-            storageVolume++;
-            myStorage.setItem(`${storageVolume}`, JSON.stringify(results))
+            finish.classList.toggle('hide');
+            finish.innerHTML = `sorry! You have lost! <br> time : ${Date.parse(new Date()) - start}
+            <br> steps: ${counter}`
+            setDataToLocalStorage()
             
         }
     }
+     
+    }
+  
+ })
+ startOver.addEventListener('click', ()=>{
+    if (start && !fail){
+        setDataToLocalStorage();
+
+    }
+     window.location.reload();
+ })
+  let pauseInterval;
+ pause.addEventListener('click', ()=>{
+   
+    if(!pauseTimer){
+        pauseTimer = true;
+        hidingField.style.pointerEvents = 'none';
+        hidingField.style.cursor = 'not-allowed';
+        start = start + 1000;
+        pauseInterval = setInterval(()=>{
+        start = start + 1000;
+    }, 1000);
+    } else {
+        pauseTimer = false;
+        hidingField.style.pointerEvents = 'auto';
+        hidingField.style.cursor = 'pointer';
+        clearInterval(pauseInterval);
+    }
     
  })
+ rules.addEventListener('click', ()=>{
+    rulesText.classList.toggle('hide');
+ });
+ score.addEventListener('click', ()=>{
+    scoreInfo.classList.toggle('hide');
+    let gameNumber = 1;
+    const myStorage = window.localStorage;
+    let keys = Object.keys(myStorage);
+    
+    keys.forEach((item)=>{
+        console.log(JSON.parse(myStorage.getItem(`${item}`)).duration);
+        const timeData = getTime(JSON.parse(myStorage.getItem(`${item}`)).duration);
+        const element = document.createElement("div");
+        element.classList.add('game_info');
+        element.innerHTML = `<h4>game ${gameNumber}</h4>
+        <span>продолжительность игры: ${addZero(timeData.hours)}:${addZero(timeData.minutes)}:${addZero(timeData.seconds)} </span>
+        <span>steps: ${JSON.parse(myStorage.getItem(`${item}`)).steps}</span></div>`;
+        gameNumber++;
+        scoreInfo.append(element);
+    })
+ })
+ window.addEventListener("load", (event) => {
+    /* if (PerformanceNavigation.type == 
+        performance.navigation.TYPE_RELOAD) {
+        console.info( "This page is reloaded" );
+      } */
+      if(start) setDataToLocalStorage();
+
+ });
 })
