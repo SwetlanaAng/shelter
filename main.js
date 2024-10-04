@@ -100,9 +100,9 @@ document.addEventListener("DOMContentLoaded", function(){
     if(timeArg === 0){
         return {
             'time': 0,
-            'seconds': 00,
-            'minutes': 00,
-            'hours': 00
+            'seconds': '0',
+            'minutes': '0',
+            'hours': '0'
         };
     }
     const seconds = Math.floor((time/1000)%60),
@@ -153,10 +153,9 @@ document.addEventListener("DOMContentLoaded", function(){
     console.log(duration);
     const results = {'duration': duration,
         'steps': counter
-    }
+    };
             if(Object.keys(myStorage).length>9){
                 let keys = Object.keys(myStorage);
-                console.log(keys);
                 myStorage.removeItem(`${Math.min(...keys)}`);
 ;            }
             storageKey = Date.parse(new Date());
@@ -235,10 +234,23 @@ document.addEventListener("DOMContentLoaded", function(){
     rulesText.classList.toggle('hide');
  });
  score.addEventListener('click', ()=>{
+    scoreInfo.innerHTML = '';
     scoreInfo.classList.toggle('hide');
     let gameNumber = 1;
     const myStorage = window.localStorage;
     let keys = Object.keys(myStorage);
+    let keysNum = keys.map((item)=>{
+        return Number(item);
+    })
+
+    
+    //keys = keys.forEach((item) => {Number(JSON.parse(item))});
+    console.log(typeof keysNum);
+    keysNum = keysNum.sort((a,b)=>b-a);
+    console.log(keysNum);
+    keys = keysNum.map((item)=>{
+        return String(item)
+    })
     
     keys.forEach((item)=>{
         console.log(JSON.parse(myStorage.getItem(`${item}`)).duration);
