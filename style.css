@@ -140,6 +140,9 @@ header, .buttons {
     font-size: 1.5vw;
     font-weight: 400;
 }
+.modal>div>img{
+    width: 26vw;
+}
 .modal>.looser,  .modal>.winner {
     color: rgb(0 0 0);
     font-size: 5vw;

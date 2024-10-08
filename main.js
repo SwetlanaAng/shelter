@@ -1,4 +1,5 @@
 `use strict`;
+let bombs = 0;
 const createNewMatrix = () => {
     let matrix = [new Array(11).fill(0),
     new Array(11).fill(0),
@@ -25,6 +26,7 @@ const createNewMatrix = () => {
             matrix[10][10] = 1;
             matrix[10][0] = 1;
             if(matrix[i][j] < 0){
+                bombs++;
                 matrix[i][j - 1] ++;
                 matrix[i][j + 1] ++;
                 matrix[i - 1][j - 1] ++;
@@ -90,8 +92,8 @@ document.addEventListener("DOMContentLoaded", function() {
         })
     }
 
-    const checkWinning = (point) => {
-        if (point === 11){
+    const checkWinning = (point, bomb) => {
+        if (point === bomb){
             audioWinner.play();
             let time = getTime();
             fail = false;
@@ -99,8 +101,10 @@ document.addEventListener("DOMContentLoaded", function() {
             modal.innerHTML = `<div><img src="./img/map_13899955.png"></div>
             <div class="winner">Congratulations!<br> time : ${addZero(time.hours)}:${addZero(time.minutes)}:${addZero(time.seconds)}
             <br> steps: ${counter}`;
-            modal.style.backgroundColor = 'rgb(0 250 3 / 50%);';
+            modal.style.backgroundColor = 'rgb(0 250 3 / 50%)';
             modal.style.height = '58vh';
+            hidingField.style.pointerEvents = 'none';
+            field.style.pointerEvents = 'none';
             setDataToLocalStorage();
         }
     }
@@ -163,7 +167,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (hidingCell.style.backgroundColor !== 'rgba(255, 227, 194, 0)') {
                     hidingCell.style.backgroundColor = 'rgba(255, 227, 194, 0)';
                     closedCells--;
-                    checkWinning(closedCells);
+                    checkWinning(closedCells, bombs);
                     if (matrix[queue[0][0]][queue[0][1]] === 0) {
                         putInQ(queue, queue[0][0], queue[0][1]);
                     } 
@@ -182,6 +186,8 @@ document.addEventListener("DOMContentLoaded", function() {
         modalBG.style.top = `${document.documentElement.scrollTop}px`;
         document.body.classList.toggle('scroll_blocked');
         wrapper.classList.toggle('hide');
+        modal.style.backgroundColor = '#FAFAFA';
+        modal.style.height = '80vh';
     }
 
     const pauseFunc = () => {
@@ -235,7 +241,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 if (Number(underCell.innerHTML) > 0 && underCell.innerHTML != '' ) {
                     clickedCell.style.backgroundColor = 'rgba(255, 227, 194, 0)';
                     closedCells--;
-                    checkWinning(closedCells);
+                    checkWinning(closedCells, bombs);
                 } 
                 else if (underCell.innerHTML === '') {
                     let ij = e.target.id.slice(1);
@@ -252,6 +258,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     <br> steps: ${counter}</div>`;
                     modal.style.backgroundColor = 'rgb(255 255 255 / 50%)';
                     modal.style.height = '54vh';
+                    hidingField.style.pointerEvents = 'none';
                     setDataToLocalStorage();
                 }
             }
@@ -287,8 +294,6 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     score.addEventListener('click', () => {
-        modal.style.backgroundColor = '#FAFAFA';
-        modal.style.height = '80vh';
         showModal()
         let gameNumber = 1;
         const myStorage = window.localStorage;
