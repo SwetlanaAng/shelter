@@ -11,7 +11,6 @@ const createNewMatrix = () =>{
     new Array(11).fill(0),
     new Array(11).fill(0),
     new Array(11).fill(0),
-
     ]
 
     matrix.forEach(() => {matrix[Math.floor(Math.random() * 9)+1][Math.floor(Math.random() * 9)+1] = -9});
@@ -34,38 +33,38 @@ const createNewMatrix = () =>{
                 matrix[i+1][j-1]++;
                 matrix[i+1][j]++;
                 matrix[i+1][j+1]++;
-            }
-            
+            }  
         }
     }
     return matrix;
 }
-//console.log(matrix)
 document.addEventListener("DOMContentLoaded", function(){
     let counter = 0;
     let start;
     let fail = true;
+    let explosion = false;
     let storageKey = 0;
     let pauseTimer = false;
     let closedCells = 81;
     let timerInterval;
  const matrix = createNewMatrix();
- 
  const field = document.querySelector('.playing_field'),
  hidingField= document.querySelector('.hiding_field'),
  hours = document.querySelector('.hours'),
  minutes = document.querySelector('.minutes'),
  seconds = document.querySelector('.seconds'),
- finish = document.querySelector('.finish'),
  startOver = document.querySelector('.start_over'),
  pause = document.querySelector('.pause'),
  rules = document.querySelector('.rules'),
- rulesText = document.querySelector('.rules_text'),
  score = document.querySelector('.score'),
- scoreInfo = document.querySelector('.score_info'),
  modal = document.querySelector('.modal'),
  modalBG = document.querySelector('.modal_bg'),
  wrapper = document.querySelector('.wrapper');
+
+ const audioClick = new Audio('./sounds/69880c1f5e57698.mp3');
+ const audioBoom = new Audio('./sounds/zvuki_iz_igry_saper_minesweeper_xMh.mp3');
+ const audioWinner = new Audio('./sounds/4cccc379d8da21a.mp3');
+
  const renderNewField = (arr) =>{
     arr.forEach((item, i) => {
         if(i!=0&&i!=10)
@@ -92,6 +91,7 @@ document.addEventListener("DOMContentLoaded", function(){
  }
  const checkWinning = (point)=>{
     if (point === 11){
+        audioWinner.play();
         let time = getTime();
         fail = false;
         showModal();
@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", function(){
         hours.innerHTML = `${addZero(time.hours)}<span>h</span> `;
         minutes.innerHTML = `${addZero(time.minutes)}<span>m</span> `;
         seconds.innerHTML = `${addZero(time.seconds)}<span>s</span>`;
-        if (fail === false){
+        if (fail === false || explosion ===true){
             clearInterval(timerInterval);
         } 
     }
@@ -199,7 +199,7 @@ document.addEventListener("DOMContentLoaded", function(){
     console.log(duration);
     const results = {'duration': duration,
         'steps': counter,
-        'victory': fail
+        'victory': !fail
     };
             if(Object.keys(myStorage).length>9){
                 let keys = Object.keys(myStorage);
@@ -213,6 +213,7 @@ document.addEventListener("DOMContentLoaded", function(){
  console.log(matrix)
  const hidingCells = document.querySelectorAll('.hiding_cell');
  hidingField.addEventListener('click', (e) => {
+    audioClick.play();
     if(e.shiftKey){
         if(e.target.alt === "flag"){
             const clickedCell = document.querySelector(`#${e.target.parentElement.id}`);
@@ -242,9 +243,11 @@ document.addEventListener("DOMContentLoaded", function(){
             let ij = e.target.id.slice(1);
             findArea(+ij[0], +ij[1]);
         }else if (underCell.innerHTML ==='<img src="./img/explosion_5512962.png" alt="explosion">'){
+            audioBoom.play()
             hidingCells.forEach((item) => {
                 item.style.backgroundColor = 'rgba(255, 227, 194, 0)';
             });
+            explosion = true;
             fail = true;
             let time = getTime();
             showModal();
@@ -262,7 +265,7 @@ document.addEventListener("DOMContentLoaded", function(){
   
  })
  startOver.addEventListener('click', ()=>{
-    if (start && fail){
+    if (start && fail && !explosion){
         setDataToLocalStorage();
 
     }
