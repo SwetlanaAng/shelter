@@ -9,14 +9,21 @@
 <body>
     <header>
         <div class="timer">
-            <div class="hours">00:</div>
-            <div class="minutes">00:</div>
-            <div class="seconds">00</div>
+            <div class="hours">00<span>h</span> </div>
+            <div class="minutes">00<span>m</span> </div>
+            <div class="seconds">00<span>s</span></div>
         </div>
         <div class="btn score">score</div>
         <div class="score_info hide">
         </div>
     </header>
+    <div class="wrapper hide">
+        <div class="modal_bg">
+            <div class="modal">
+                
+            </div>
+        </div>
+    </div>
     <main>
         <div class="main_container">
             <div class="playing_field">
@@ -35,14 +42,6 @@
             <p>Игра начинается с первого клика по любой ячейке на поле. При клике на ячейке она открывается. Если в ней находится мина, то на поле открываются все ячейки и игра заканчивается проигрышем. Если в самой ячейке мины нет, но есть мины в соседних ячеках, то отображается число, соответствующее количеству мин в соседних ячейках. Если ни в самой ячейке, ни в соседних мин нет, то ячейка остается пустой и открываются все соседние пустые яйчеки до тех пор, пока не будут достигнуты ячейки с ненулевой информацией о количестве мин.</p>
             <p>С помощью клика с нажатым Shift можно пометить ячейку флажком (т.е. как содержащую мину).</p>
             <p>После того, как на игровом поле останутся неоткрытыми только ячейки, предположительно содержащие мины, то игра проверит результат и выведет сообщение о успешности или ошибочности предложенного варианта размещения мин.</p>
-        </div>
-        <div class="timer">
-            <div class="hours">00:</div>
-            <div class="minutes">00:</div>
-            <div class="seconds">00</div>
-        </div>
-        <div class="btn score">score</div>
-        <div class="score_info hide">
         </div>
     </main>
     <footer class="footer">

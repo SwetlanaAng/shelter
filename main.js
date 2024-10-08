@@ -44,7 +44,7 @@ const createNewMatrix = () =>{
 document.addEventListener("DOMContentLoaded", function(){
     let counter = 0;
     let start;
-    let fail = false;
+    let fail = true;
     let storageKey = 0;
     let pauseTimer = false;
     let closedCells = 81;
@@ -62,7 +62,10 @@ document.addEventListener("DOMContentLoaded", function(){
  rules = document.querySelector('.rules'),
  rulesText = document.querySelector('.rules_text'),
  score = document.querySelector('.score'),
- scoreInfo = document.querySelector('.score_info');
+ scoreInfo = document.querySelector('.score_info'),
+ modal = document.querySelector('.modal'),
+ modalBG = document.querySelector('.modal_bg'),
+ wrapper = document.querySelector('.wrapper');
  const renderNewField = (arr) =>{
     arr.forEach((item, i) => {
         if(i!=0&&i!=10)
@@ -70,7 +73,12 @@ document.addEventListener("DOMContentLoaded", function(){
             const cell = document.createElement('div');
             cell.classList.add('cell');
             cell.classList.add(`c${i}${j}`);
-            if(item[j] != 0) cell.innerHTML = `${item[j]}`;
+            if(item[j] != 0) {
+                cell.innerHTML = `${item[j]}`;
+                if (item[j]===1) cell.style.textShadow = 'rgb(0 22 255) 1px 0 10px';
+                if (item[j]===2) cell.style.textShadow = 'rgb(77 255 0) 1px 0 10px';
+                if (item[j]===3) cell.style.textShadow = 'rgb(217, 0, 255) 1px 0 10px';
+            } 
             if(item[j] < 0) cell.innerHTML = '<img src="./img/explosion_5512962.png" alt="explosion">';////
             field.append(cell);
 
@@ -84,12 +92,15 @@ document.addEventListener("DOMContentLoaded", function(){
  }
  const checkWinning = (point)=>{
     if (point === 11){
-        finish.classList.toggle('hide');
-        fail = true;
-            finish.innerHTML = `Congratulations! You have won! <br> time : ${Date.parse(new Date()) - start}
-            <br> steps: ${counter}`;
-            setDataToLocalStorage();
-            //pauseFunc();
+        let time = getTime();
+        fail = false;
+        showModal();
+        modal.innerHTML = `<div><img src="./img/map_13899955.png"></div>
+        <div class="winner">Congratulations!<br> time : ${addZero(time.hours)}:${addZero(time.minutes)}:${addZero(time.seconds)}
+        <br> steps: ${counter}`;
+        modal.style.backgroundColor = 'rgb(0 250 3 / 50%);';
+        modal.style.height = '58vh';
+        setDataToLocalStorage();
     }
  }
  const addZero = (number) =>{
@@ -102,10 +113,10 @@ document.addEventListener("DOMContentLoaded", function(){
         
         if(timeArg)  time = getTime(timeArg);
         else time = getTime();
-        hours.innerHTML = `${addZero(time.hours)}:`;
-        minutes.innerHTML = `${addZero(time.minutes)}:`;
-        seconds.innerHTML = `${addZero(time.seconds)}`;
-        if (fail === true){
+        hours.innerHTML = `${addZero(time.hours)}<span>h</span> `;
+        minutes.innerHTML = `${addZero(time.minutes)}<span>m</span> `;
+        seconds.innerHTML = `${addZero(time.seconds)}<span>s</span>`;
+        if (fail === false){
             clearInterval(timerInterval);
         } 
     }
@@ -167,6 +178,11 @@ document.addEventListener("DOMContentLoaded", function(){
     let queue = [[i,j]];
     formQ(queue); 
     
+ }
+ const showModal = ()=>{
+    modalBG.style.top = `${document.documentElement.scrollTop}px`;
+    document.body.classList.toggle('scroll_blocked');
+    wrapper.classList.toggle('hide');
  }
  const pauseFunc = ()=>{
         pauseTimer = true;
@@ -230,9 +246,13 @@ document.addEventListener("DOMContentLoaded", function(){
                 item.style.backgroundColor = 'rgba(255, 227, 194, 0)';
             });
             fail = true;
-            finish.classList.toggle('hide');
-            finish.innerHTML = `sorry! You have lost! <br> time : ${Date.parse(new Date()) - start}
-            <br> steps: ${counter}`
+            let time = getTime();
+            showModal();
+            modal.innerHTML = `<div><img src="./img/explosion_5512962.png"></div>
+            <div class="looser">You have lost! <br> time : ${addZero(time.hours)}:${addZero(time.minutes)}:${addZero(time.seconds)}
+            <br> steps: ${counter}</div>`;
+            modal.style.backgroundColor = 'rgb(255 255 255 / 50%)';
+            modal.style.height = '54vh';
             setDataToLocalStorage()
             
         }
@@ -242,7 +262,7 @@ document.addEventListener("DOMContentLoaded", function(){
   
  })
  startOver.addEventListener('click', ()=>{
-    if (start && !fail){
+    if (start && fail){
         setDataToLocalStorage();
 
     }
@@ -262,11 +282,21 @@ document.addEventListener("DOMContentLoaded", function(){
     
  })
  rules.addEventListener('click', ()=>{
-    rulesText.classList.toggle('hide');
+    showModal();
+    modal.innerHTML = `<h3>Правила игры <span>САПЁР</span></h3>
+    <p>На поле размером 9x9 (в данной реализации) в некоторых ячейках спрятано 11 мин. Цель игры - найти все мины на поле.</p>
+<p>Игра начинается с первого клика по любой ячейке на поле. При клике на ячейке она открывается. Если в ней находится мина, то на поле открываются все ячейки и игра заканчивается проигрышем. Если в самой ячейке мины нет, но есть мины в соседних ячеках, то отображается число, соответствующее количеству мин в соседних ячейках. Если ни в самой ячейке, ни в соседних мин нет, то ячейка остается пустой и открываются все соседние пустые яйчеки до тех пор, пока не будут достигнуты ячейки с ненулевой информацией о количестве мин.</p>
+<p>С помощью клика с нажатым Shift можно пометить ячейку флажком (т.е. как содержащую мину).</p>
+<p>После того, как на игровом поле останутся неоткрытыми только ячейки, предположительно содержащие мины, то игра проверит результат и выведет сообщение о успешности или ошибочности предложенного варианта размещения мин.</p>`
  });
+ modalBG.addEventListener('click', ()=>{
+    modal.innerHTML = '';
+    showModal();
+ })
+
+
  score.addEventListener('click', ()=>{
-    scoreInfo.innerHTML = '';
-    scoreInfo.classList.toggle('hide');
+    showModal()
     let gameNumber = 1;
     const myStorage = window.localStorage;
     let keys = Object.keys(myStorage);
@@ -276,7 +306,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
     
     //keys = keys.forEach((item) => {Number(JSON.parse(item))});
-    console.log(typeof keysNum);
+    
     keysNum = keysNum.sort((a,b)=>b-a);
     console.log(keysNum);
     keys = keysNum.map((item)=>{
@@ -288,12 +318,12 @@ document.addEventListener("DOMContentLoaded", function(){
         const timeData = getTime(JSON.parse(myStorage.getItem(`${item}`)).duration);
         const element = document.createElement("div");
         element.classList.add('game_info');
-        element.innerHTML = `<h4>game ${gameNumber}</h4>
-        <span>продолжительность игры: ${addZero(timeData.hours)}:${addZero(timeData.minutes)}:${addZero(timeData.seconds)} </span>
-        <span>steps: ${JSON.parse(myStorage.getItem(`${item}`)).steps}</span>
-        <span>outcome of the game: ${JSON.parse(myStorage.getItem(`${item}`)).victory ? 'victory' : 'defeat'}</span></div>`;
+        element.innerHTML = `<p><span class="color"> ${gameNumber}. </span>
+        <span>game duration: <span class="color">${addZero(timeData.hours)}:${addZero(timeData.minutes)}:${addZero(timeData.seconds)}</span> </span>
+        <span>steps: <span class="color">${JSON.parse(myStorage.getItem(`${item}`)).steps}</span></span>
+        <span>outcome of the game: <span class="color">${JSON.parse(myStorage.getItem(`${item}`)).victory ? 'victory' : 'defeat'}</span></span></p>`;
         gameNumber++;
-        scoreInfo.append(element);
+        modal.append(element);
     })
  })
  window.addEventListener("load", (event) => {
