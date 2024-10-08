@@ -104,6 +104,9 @@ header, .buttons {
     background-color: rgb(134, 64, 169);
     border-radius: 3px;
 }
+.hiding_cell:hover {
+    cursor: pointer;
+}
 .modal_bg {
     width: 100vw;
     height: 100vh;
