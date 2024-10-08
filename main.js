@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function() {
     modal = document.querySelector('.modal'),
     modalBG = document.querySelector('.modal_bg'),
     wrapper = document.querySelector('.wrapper');
-    const hidingCells = document.querySelectorAll('.hiding_cell');
+    
     const audioClick = new Audio('./sounds/69880c1f5e57698.mp3');
     const audioBoom = new Audio('./sounds/zvuki_iz_igry_saper_minesweeper_xMh.mp3');
     const audioWinner = new Audio('./sounds/4cccc379d8da21a.mp3');
@@ -212,7 +212,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     renderNewField(matrix);
     console.log(matrix);
-
+    const hidingCells = document.querySelectorAll('.hiding_cell');
     hidingField.addEventListener('click', (e) => {
         audioClick.play();
         if (e.shiftKey) {
@@ -287,6 +287,8 @@ document.addEventListener("DOMContentLoaded", function() {
     })
 
     score.addEventListener('click', () => {
+        modal.style.backgroundColor = '#FAFAFA';
+        modal.style.height = '80vh';
         showModal()
         let gameNumber = 1;
         const myStorage = window.localStorage;
@@ -295,7 +297,6 @@ document.addEventListener("DOMContentLoaded", function() {
             return Number(item);
         });
         keysNum = keysNum.sort((a, b) => b - a);
-        console.log(keysNum);
         keys = keysNum.map((item) => {
             return String(item)
         })
