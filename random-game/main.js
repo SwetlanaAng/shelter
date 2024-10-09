@@ -217,14 +217,19 @@ document.addEventListener("DOMContentLoaded", function () {
             victory: !fail,
         };
         let keys = Object.keys(myStorage);
-        let keysNum = keys.filter((item) => {
-            if (JSON.parse(myStorage.getItem(`${item}`)).duration) return item;
-        });
+        let keysNum = keys
+            .filter((item) => {
+                const arr = item.split("-");
+                if (arr.length > 0 && arr[0] === "sapper") {
+                    return item;
+                }
+            })
+            .map((item) => Number(item.split("-")[1]));
         if (keysNum.length > 9) {
-            myStorage.removeItem(`${Math.min(...keysNum)}`);
+            myStorage.removeItem(`sapper-${Math.min(...keysNum)}`);
         }
         storageKey = Date.parse(new Date());
-        myStorage.setItem(`${storageKey}`, JSON.stringify(results));
+        myStorage.setItem(`sapper-${storageKey}`, JSON.stringify(results));
     };
 
     renderNewField(matrix);
@@ -270,8 +275,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     let time = getTime();
                     showModal();
                     modal.innerHTML = `<div><img src="./img/explosion_5512962.png"></div>
-                    <div class="looser">You have lost! <br> time : ${addZero(time.hours)}
-                    :${addZero(time.minutes)}:${addZero(time.seconds)}
+                    <div class="looser">You have lost! <br> time : ${addZero(time.hours)}:${addZero(
+                        time.minutes
+                    )}:${addZero(time.seconds)}
                     <br> steps: ${counter}</div>`;
                     modal.style.backgroundColor = "rgb(255 255 255 / 50%)";
                     modal.style.height = "54vh";
@@ -310,21 +316,23 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.innerHTML = "";
         showModal();
     });
-    /* window.localStorage.setItem(
-        `perfectpixel-panel`,
-        JSON.stringify({ isCollapsed: true, x: "snap", y: "snap" })
-    ); */
+    //window.localStorage.setItem(`color-theme`, "light");
     score.addEventListener("click", () => {
         showModal();
         let gameNumber = 1;
         const myStorage = window.localStorage;
         let keys = Object.keys(myStorage);
-        let keysNum = keys.map((item) => {
-            if (JSON.parse(myStorage.getItem(`${item}`)).duration) return Number(item);
-        });
+        let keysNum = keys
+            .filter((item) => {
+                const arr = item.split("-");
+                if (arr.length > 0 && arr[0] === "sapper") {
+                    return item;
+                }
+            })
+            .map((item) => Number(item.split("-")[1]));
         keysNum = keysNum.sort((a, b) => b - a);
         keys = keysNum.map((item) => {
-            return String(item);
+            return String(`sapper-${item}`);
         });
         keys.forEach((item) => {
             const timeData = getTime(JSON.parse(myStorage.getItem(`${item}`)).duration);
