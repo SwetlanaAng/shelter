@@ -325,10 +325,10 @@ document.addEventListener("DOMContentLoaded", function () {
             const element = document.createElement("div");
             element.classList.add("game_info");
             element.innerHTML = `<p><span class="color"> ${gameNumber}. </span>
-            <span>game duration: <span class="color">${addZero(timeData.hours)}:
-            ${addZero(timeData.minutes)}:
-            ${addZero(timeData.seconds)}</span> </span>
-            <span>steps: <span class="color">
+            <span>game duration: <span class="color">${addZero(timeData.hours)}:${addZero(
+                timeData.minutes
+            )}:${addZero(timeData.seconds)}</span> </span>
+            <span>steps:<span class="color">
             ${JSON.parse(myStorage.getItem(`${item}`)).steps}
             </span></span><span>outcome of the game: <span class="color">
             ${JSON.parse(myStorage.getItem(`${item}`)).victory ? "victory" : "defeat"}
