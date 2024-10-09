@@ -316,7 +316,6 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.innerHTML = "";
         showModal();
     });
-    //window.localStorage.setItem(`color-theme`, "light");
     score.addEventListener("click", () => {
         showModal();
         let gameNumber = 1;
