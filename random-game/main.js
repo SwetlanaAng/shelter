@@ -216,9 +216,12 @@ document.addEventListener("DOMContentLoaded", function () {
             steps: counter,
             victory: !fail,
         };
-        if (Object.keys(myStorage).length > 9) {
-            let keys = Object.keys(myStorage);
-            myStorage.removeItem(`${Math.min(...keys)}`);
+        let keys = Object.keys(myStorage);
+        let keysNum = keys.filter((item) => {
+            if (JSON.parse(myStorage.getItem(`${item}`)).duration) return item;
+        });
+        if (keysNum.length > 9) {
+            myStorage.removeItem(`${Math.min(...keysNum)}`);
         }
         storageKey = Date.parse(new Date());
         myStorage.setItem(`${storageKey}`, JSON.stringify(results));
@@ -307,14 +310,17 @@ document.addEventListener("DOMContentLoaded", function () {
         modal.innerHTML = "";
         showModal();
     });
-
+    /* window.localStorage.setItem(
+        `perfectpixel-panel`,
+        JSON.stringify({ isCollapsed: true, x: "snap", y: "snap" })
+    ); */
     score.addEventListener("click", () => {
         showModal();
         let gameNumber = 1;
         const myStorage = window.localStorage;
         let keys = Object.keys(myStorage);
         let keysNum = keys.map((item) => {
-            return Number(item);
+            if (JSON.parse(myStorage.getItem(`${item}`)).duration) return Number(item);
         });
         keysNum = keysNum.sort((a, b) => b - a);
         keys = keysNum.map((item) => {
