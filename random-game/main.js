@@ -244,7 +244,7 @@ document.addEventListener("DOMContentLoaded", function () {
             } else {
                 const clickedCell = document.querySelector(`#${e.target.id}`);
                 clickedCell.innerHTML =
-                    '<img src="./img/map_13899955.png" alt="flag" style="width: 5vw">';
+                    '<img src="./img/map_13899955.png" alt="flag" style="width: 4vw">';
             }
         } else {
             if (counter === 0) {
@@ -266,7 +266,9 @@ document.addEventListener("DOMContentLoaded", function () {
                     underCell.innerHTML ===
                     '<img src="./img/explosion_5512962.png" alt="explosion">'
                 ) {
+                    audioBoom.volume = 0.5;
                     audioBoom.play();
+
                     hidingCells.forEach((item) => {
                         item.style.backgroundColor = "rgba(255, 227, 194, 0)";
                     });
