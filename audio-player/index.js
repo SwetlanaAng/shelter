@@ -113,6 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
         
     };
     audio.addEventListener('loadedmetadata',() => length.innerHTML = `${getTime(audio.duration)}` );
+    
     play.addEventListener("click", () => {
         if (currentT != 0) currentT = audio.currentTime;
         else currentT = 0;   
