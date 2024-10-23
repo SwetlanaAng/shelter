@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shelter</title>
+    <link rel="icon" type="image/x-icon" href="./img/favicon.ico">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./adaptive.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="menu_background"></div>
+        <div class="pop_up_bg hide">
+        </div>
+        <div class="menu">
+            <ul class="nav_ul_small_screens">
+                <li><a  class="active not_active_pets" href="./index.html">About the shelter</a></li>
+                <li><a class="active_pets" href="#">Our pets</a></li>
+                <li><a href="./index.html#help">Help the shelter</a></li>
+                <li><a href="#footer">Contacts</a></li>
+            </ul>
+        </div>
+        <div class="upper_container upper_container_pets">
+            <header class="header header_pets">
+                <div onclick="window.location.href='./index.html'" class="logo">
+                    <h1 class="title title_pets">Cozy House</h1>
+                    <span class="subtitle subtitle_pets">Shelter for pets in Boston</span>
+                </div>
+                <nav class="nav">
+                    <ul class="nav_ul nav_ul_pets">
+                        <li><a  class="active not_active_pets" href="./index.html">About the shelter</a></li>
+                        <li><a class="active_pets" href="#">Our pets</a></li>
+                        <li><a href="./index.html#help">Help the shelter</a></li>
+                        <li><a href="#footer">Contacts</a></li>
+                    </ul>
+                </nav>
+            </header>
+        </div>
+        <main>
+            <section class="our_friends our_friends_pets" id="our_friends">
+                <div class="about_container about_container_pets">
+                    <h3 class="h3">Our friends who <br>are looking for a house</h3>
+                    <div class="slider slider_pets">
+                    </div>
+                </div>
+                <div class="navigation navigation_pets">
+                    <div class="double_arrow_left_pets disabled"><<</div>
+                    <div class="arrow_left_pets disabled"><</div>
+                    <div class="page_pets"></div>
+                    <div class="arrow_right_pets" >></div>
+                    <div class="double_arrow_right_pets" >>></div>
+                </div>
+            </section>
+        </main>
+        <footer class="footer footer_pets" id="footer">
+            <div class="footer_container footer_container_pets">
+                <div class="contacts">
+                    <h3 class="h3">For questions <br>and suggestions</h3>
+                    <ul>
+                        <li>
+                            <div class="link_container" onclick="window.location.href='mailto:email@shelter.com'"><div class="footer_icon"><img src="./img/mail.png" alt="mail"></div>
+                            <div>email@shelter.com</div></div>
+                        </li>
+                        <li class="footer_phone">
+                            <div class="link_container" onclick="window.location.href='tel:+136745677554'" ><div class="footer_icon"><img src="./img/icon-phone.svg" alt="phone"></div>
+                            <div>+13 674 567 75 54</div></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="location">
+                    <h3 class="h3">We are waiting <br>for your visit</h3>
+                    <ul class="location_ul">
+                        <li>
+                            <div class="link_container" onclick="window.open('https://www.google.co.uk/maps/place/Boston,+UK/@52.9783755,-0.062611,13z/data=!3m1!4b1!4m6!3m5!1s0x47d7c2c53856f733:0x8406d541f1a0910c!8m2!3d52.97894!4d-0.026577!16zL20vMGhiZDc?entry=ttu', '_blank');"><div class="footer_icon"><img src="./img/pin.png" alt="pin"></div>
+                            <div>1 Central Street, Boston <br>(entrance from the store)</div></div>
+                        </li>
+                        <li>
+                            <div class="link_container" onclick="window.open('https://www.google.co.uk/maps/place/London,+UK/@51.5285262,-0.266404,11z/data=!3m1!4b1!4m6!3m5!1s0x47d8a00baf21de75:0x52963a5addd52a99!8m2!3d51.5072178!4d-0.1275862!16zL20vMDRqcGw?entry=ttu', '_blank');"><div class="footer_icon"><img src="./img/pin.png" alt="pin"></div>
+                            <div>18 South Park, London</div></div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="footer_dog"><img src="./img/footer-puppy.png" alt="puppy"></div>
+            </div>
+        </footer>
+    </div>
+    <script src="./pets.js"></script>
+    <script src="./popUp.js"></script>
+</body>
+</html>
